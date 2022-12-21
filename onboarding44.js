@@ -1,4 +1,6 @@
-   
+const yoyoyoyo = "hello"
+
+
 // counter code that tracks on which page user is
 
 const previousButton = document.querySelector('.previous');
@@ -11,7 +13,6 @@ const letter_one_dupe = document.querySelector('.letterbase.letteronedupe');
 const letter_two_dupe = document.querySelector('.letterbase.lettertwodupe');
 const letter_three_dupe = document.querySelector('.letterbase.letterthreedupe');
 const letter_four_dupe = document.querySelector('.letterbase.letterfourdupe');
-
 let pageCounter = 0;
 
 
