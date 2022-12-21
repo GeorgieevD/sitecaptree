@@ -84,12 +84,6 @@ function caseInSwitch(val) {
     switch(val) {
         case 0:
 
-            // adjust height for mobile
-
-            if (window.innerWidth < 600) {
-            height = document.querySelector('.target-filter-1').offsetHeight;
-            document.querySelector('.step-paginator').style.height = height+"px";
-            }
 
             // remove page 1 classes
 
@@ -112,14 +106,6 @@ function caseInSwitch(val) {
 
         case 1: 
 
-            // adjust height for mobile
-
-            if (window.innerWidth < 600) {
-
-            height = document.querySelector('.target-filter-2').offsetHeight;
-            document.querySelector('.step-paginator').style.height = height+"px";
-            
-            }
             // add page 1 classes
              	
             removeClasses2();
@@ -181,14 +167,7 @@ function caseInSwitch(val) {
 
         case 2: 
 
-          // adjust height for mobile
 
-          if (window.innerWidth < 600) {
-
-          height = document.querySelector('.financial-information').offsetHeight;
-          document.querySelector('.step-paginator').style.height = height+"px";
-
-          }
             // add page 2 classes
         
             removeClasses3();
@@ -280,14 +259,7 @@ function caseInSwitch(val) {
           
         case 3: 
       
-            // adjust height for mobile
 
-            if (window.innerWidth < 600) {
-
-            height = document.querySelector('.company-info').offsetHeight;
-            document.querySelector('.step-paginator').style.height = height+"px";
-
-            }
             // add page 3 classes
 
             removeClasses4();
@@ -390,12 +362,7 @@ function caseInSwitch(val) {
             break;
         case 4: 
         
-            // adjust height for mobile
 
-            if (window.innerWidth < 600) {
-            height = document.querySelector('.contact-info').offsetHeight;
-            document.querySelector('.step-paginator').style.height = height+"px";
-            }
         		// add page 4 classes
             
             	tick_step_3.forEach(tickcontainer3 => {
