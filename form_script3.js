@@ -36,7 +36,7 @@ const p7_next_mask = document.getElementById("p7_next_mask")
 const p8_next_mask = document.getElementById("p8_next_mask")
 
 var all_next_buttons = [p1_next_mask, p2_next_mask, p3_next_mask, p4_next_mask, p5_next_mask, p6_next_mask, p7_next_mask, p8_next_mask]
-var all_prev_buttons = [p2_prev_mask, p3_prev_mask, p4_prev_mask, p5_prev_mask, p6_prev_mask, p7_prev_mask, p8_prev_mask, p9_prev_mask ]
+var all_prev_buttons = [p2_prev_mask, p3_prev_mask, p4_prev_mask, p5_prev_mask, p6_prev_mask, p7_prev_mask, p8_prev_mask ]
 
 all_next_buttons.forEach((elem) => {
 		elem.style.visibility="hidden"
