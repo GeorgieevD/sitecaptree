@@ -14,12 +14,14 @@ function count_inputs(block_ID) {
 	return counter 
 }
 
-function UpdatePGHeight() {
+function UpdatePGHeight(page_number) {
+	const checked_elements = ['.Funding_goals_1', '.Funding_goals_2', '.Issuer_info', '.Issuer_info_2', '.Finfo', '.Finfo_2', '.Finfo_3', '.Contact_info']
   if (window.innerWidth < 600) {
-		height = document.querySelector('.slider').offsetHeight;
+		height = document.querySelector(checked_elements[page_number]).offsetHeight;
     document.querySelector('.Step_paginator_issuer').style.height = height+"px";
     }  	
 }
+
 
 const prev_button = document.getElementById("previous_button")
 const next_button = document.getElementById("next_button_slider")
@@ -31,13 +33,13 @@ submit_button.style.visibility="hidden"
 
 next_button.addEventListener("click", () => { 
 	page_number = page_number + 1
-	UpdatePGHeight()
+	UpdatePGHeight(page_number)
 	QuestionCheck(page_number) 
 	window.scrollTo(0, 0.5) } )
 
 prev_button.addEventListener("click", () => { 
     page_number = page_number - 1
-    UpdatePGHeight()	    
+    UpdatePGHeight(page_number)
     QuestionCheck(page_number)
     window.scrollTo(0, 0.5) })
 
