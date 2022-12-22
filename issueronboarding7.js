@@ -1,7 +1,7 @@
    
 // counter code that tracks on which page user is
 
-const previousButton = document.querySelector('.previous');
+const previousButton = document.getElementById('previous_button');
 const nextButton = document.getElementById('next_button_slider');
 const submit_button_click = document.querySelector('.submitbutton4');
 
@@ -77,13 +77,6 @@ caseInSwitch(pageCounter);
 function caseInSwitch(val) {
     switch(val) {
         case 0:
-
-            // adjust height for mobile
-
-            if (window.innerWidth < 600) {
-            height = document.querySelector('.target-filter-1').offsetHeight;
-            document.querySelector('.step-paginator').style.height = height+"px";
-            }
 
             // remove page 1 classes
 
