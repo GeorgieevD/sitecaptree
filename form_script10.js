@@ -18,7 +18,7 @@ function UpdatePGHeight(page_number) {
 	const checked_elements = ['.funding_goals_1', '.funding_goals_2', '.issuer_info', '.issuer_info_2', '.finfo', '.finfo_2', '.finfo_3', '.contact_info']
   if (window.innerWidth < 600) {
 		height = document.querySelector(checked_elements[page_number]).offsetHeight;
-    document.querySelector('.Step_paginator_issuer').style.height = height+"px";
+    document.querySelector('.step_paginator_issuer').style.height = height+"px";
     }  	
 }
 
