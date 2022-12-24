@@ -1,7 +1,7 @@
    
 // counter code that tracks on which page user is
 
-const previousButton = document.getElementById('previous_button');
+const previousButton = document.querySelector('.previous');
 const nextButton = document.getElementById('next_button_slider');
 const submit_button_click = document.querySelector('.submitbutton4');
 
@@ -70,13 +70,55 @@ let Time14;
 let Time15;
 let height;
 
+// call pageCounter formula for the first time so code in case 0 is run on page 0
+
 caseInSwitch(pageCounter);
+
+// code for animation on success page
+
+submit_button_click.addEventListener('click', () => {
+
+  document.getElementById("form1").setAttribute("style","opacity:0; -moz-opacity:0; filter:alpha(opacity=0)");
+  document.getElementById("next_button_slider").setAttribute("style","opacity:0; -moz-opacity:0; filter:alpha(opacity=0)");
+  document.getElementById("timelinebegin").setAttribute("style","opacity:0; -moz-opacity:0; filter:alpha(opacity=0)");
+  
+  setTimeout(startwait,100);
+  
+})
+  
+function startwait() { 
+  
+  var anim = bodymovin.loadAnimation({
+        container: document.getElementById('animContainer'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'https://raw.githubusercontent.com/GeorgieevD/sitecaptree/main/lf30_editor_makgz2pe.json' // lottie file path
+})
+  
+anim.setSpeed(1.5);
+
+setTimeout(ending,3000);
+
+}
+  
+function ending() {
+  document.getElementById("finallender").setAttribute("style","opacity:1.0; -moz-opacity:1.0; filter:alpha(opacity=100)");
+  document.getElementById("exitbutton").setAttribute("style","opacity:1.0; -moz-opacity:1.0; filter:alpha(opacity=100)");  
+}
 
 // switch function that applies different formats to components timeline depending on which page user is
 
 function caseInSwitch(val) {
     switch(val) {
         case 0:
+
+            // adjust height for mobile
+
+            if (window.innerWidth < 600) {
+            height = document.querySelector('.target-filter-1').offsetHeight;
+            document.querySelector('.step-paginator').style.height = height+"px";
+            }
 
             // remove page 1 classes
 
@@ -105,7 +147,6 @@ function caseInSwitch(val) {
              	
             removeClasses2();
 
-
               Time1 = setTimeout(progress1, 500);
               Time2 = setTimeout(progress2, 1000);
     
@@ -122,16 +163,18 @@ function caseInSwitch(val) {
                   }
                               
             // remove page 2 classes 
-            
 
             function removeClasses2(){
+            
+            // stop timeline animations if you go back before they finished
 
             clearTimeout(Time3);
             clearTimeout(Time4); 
             clearTimeout(Time5);
             console.log("cleared page 2 classes")
 
-             
+             // need for loops because the timeline needs to change on every page
+
         	circle_step_2.forEach(circle2 => {
         		circle2.classList.remove('activecircle');
     			});
