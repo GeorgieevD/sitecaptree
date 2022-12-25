@@ -5,7 +5,7 @@ function count_inputs(block_ID) {
       if (element.type == "checkbox" || element.type == "radio") {
           if(element.checked) { 
               counter = counter + 1}
-      } else if (element.type == "text" || element.type == "number" ||  element.type == "select" ||  element.type == "email") {
+      } else if (element.type == "text" || element.type == "number" ||  element.type == "select" ||  element.type == "email" || element.type == "select-one") {
           if(element.value.length > 0){
               counter = counter + 1
           }    
