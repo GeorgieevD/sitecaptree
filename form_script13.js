@@ -15,7 +15,7 @@ function count_inputs(block_ID) {
 }
 
 function UpdatePGHeight(page_number) {
-	const checked_elements = ['.funding_goals_1', '.funding_goals_2', '.issuer_info', '.issuer_info_2', '.finfo', '.finfo_2', '.finfo_3', '.contact_info']
+	const checked_elements = ['.funding_goals_1', '.funding_goals_2', '.issuer_info_1', '.issuer_info_2', '.issuer_info_3', '.finfo', '.finfo_2', '.finfo_3', '.contact_info']
   if (window.innerWidth < 600) {
 		height = document.querySelector(checked_elements[page_number]).offsetHeight;
     document.querySelector('.step_paginator_issuer').style.height = height+"px";
