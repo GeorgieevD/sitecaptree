@@ -6,7 +6,6 @@ var page_number = 0;
 const raise_wrapper = document.getElementById("raise_wrapper")
 const funding_timing = document.getElementById("funding_timing_block")
 funding_timing.style.visibility="hidden"
-UpdatePGHeight(0) 
 
 /* page 2 elements */
 const p2_first_block = document.getElementById("p2_first_block")
