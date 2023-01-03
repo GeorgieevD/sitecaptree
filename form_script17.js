@@ -53,5 +53,5 @@ var triggers_p5 = Array.from($("#grid_wrapper_p5 :input"));
 var triggers_p6 = Array.from($("#grid_wrapper_p6 :input")); 
 var triggers_p7 = Array.from($("#grid_wrapper_p7 :input")); 
 var triggers_p8 = Array.from($("#grid_wrapper_p8 :input")); 
-var triggers_p8 = Array.from($("#grid_wrapper_p9 :input")); 
+var triggers_p9 = Array.from($("#grid_wrapper_p9 :input")); 
 var triggers = triggers_p1.concat(triggers_p2, triggers_p3, triggers_p4, triggers_p5, triggers_p6, triggers_p7,triggers_p8,triggers_p9)
