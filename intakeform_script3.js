@@ -44,9 +44,6 @@ const cash_burn_title = document.getElementById("cash_burn_title")
 const cashflow_wrapper = document.getElementById("cashflow_wrapper")
 
 cashflow_wrapper.style.visibility="hidden"
-equity_wrapper.style.visibility="hidden"
-fcf_title.style.display="none"
-cash_burn_title.style.display="none"
 
 
 /* page 8 elements */
