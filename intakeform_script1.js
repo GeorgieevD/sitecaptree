@@ -33,17 +33,21 @@ rev_recurring.style.visibility="hidden"
 /* page 6 elements */
 const p6_first_block = document.getElementById("p6_first_block")
 const EBITDA_wrapper = document.getElementById("EBITDA_wrapper")
-const burn_rate_wrapper = document.getElementById("burn_rate_wrapper")
 const prof_yes_button = document.getElementById("prof_yes_button")
 EBITDA_wrapper.style.display="none"
-burn_rate_wrapper.style.visibility="hidden"
 
 /* page 7elements */
 const p7_first_block = document.getElementById("p7_first_block")
-const equity_wrapper = document.getElementById("equity_wrapper")
-const cap_wrapper = document.getElementById("cap_wrapper")
-cap_wrapper.style.visibility="hidden"
+const cf_negative = document.getElementById("cf_negative")
+const cf_positive = document.getElementById("cf_positive")
+const fcf_title = document.getElementById("fcf_title")
+const cash_burn_title = document.getElementById("cash_burn_title")
+const cashflow_wrapper = document.getElementById("cashflow_wrapper")
+
+cashflow_wrapper.style.visibility="hidden"
 equity_wrapper.style.visibility="hidden"
+fcf_title.style.display="none"
+cash_burn_title.style.display="none"
 
 
 /* page 8 elements */
