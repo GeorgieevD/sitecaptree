@@ -15,7 +15,7 @@ function count_inputs(block_ID) {
 }
 
 function UpdatePGHeight(page_number) {
-	const checked_elements = ['.funding_goals_1', '.funding_goals_2', '.issuer_info_1', '.issuer_info_2', '.issuer_info_3', '.finfo', '.finfo_2', '.finfo_3', '.contact_info']
+	const checked_elements = ['.funding_goals_1', '.funding_goals_2', '.issuer_info_1', '.issuer_info_2', '.issuer_info_3', '.finfo', '.finfo_2', '.finfo_3', '.finfo_4']
   if (window.innerWidth < 600) {
 		height = document.querySelector(checked_elements[page_number]).offsetHeight;
     document.querySelector('.step_paginator_issuer').style.height = height+"px";
@@ -53,4 +53,5 @@ var triggers_p5 = Array.from($("#grid_wrapper_p5 :input"));
 var triggers_p6 = Array.from($("#grid_wrapper_p6 :input")); 
 var triggers_p7 = Array.from($("#grid_wrapper_p7 :input")); 
 var triggers_p8 = Array.from($("#grid_wrapper_p8 :input")); 
-var triggers = triggers_p1.concat(triggers_p2, triggers_p3, triggers_p4, triggers_p5, triggers_p6, triggers_p7,triggers_p8)
+var triggers_p8 = Array.from($("#grid_wrapper_p9 :input")); 
+var triggers = triggers_p1.concat(triggers_p2, triggers_p3, triggers_p4, triggers_p5, triggers_p6, triggers_p7,triggers_p8,triggers_p9)
