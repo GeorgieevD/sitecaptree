@@ -14,3 +14,16 @@ function setCookie(cookieName, cookieValue, nDays) {
      document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
     return false
 }
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) {
+    var cookieValue = parts.pop().split(";").shift();
+    try {
+      return JSON.parse(cookieValue);
+    } catch(e) {
+      return cookieValue;
+    }
+  }
+}
