@@ -21,9 +21,9 @@ function getCookie(name) {
   if (parts.length == 2) {
     var cookieValue = parts.pop().split(";").shift();
     try {
-      return JSON.parse(cookieValue);
+      return JSON.parse(decodeURIComponent(cookieValue));
     } catch(e) {
-      return cookieValue;
+      return decodeURIComponent(cookieValue);
     }
   }
 }
