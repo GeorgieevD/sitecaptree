@@ -28,7 +28,7 @@ function getCookie(name) {
   }
 }
 
-function getCookies(selectors,trigger){
+function setCookies(selectors,trigger){
       trigger.forEach((elem) => {
           elem.addEventListener("change", () => { 
           for (const cookieName of selectors){
