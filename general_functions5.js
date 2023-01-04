@@ -37,10 +37,4 @@ function setCookies(selectors,trigger){
           }
             })      
       });
-
-      if (selectors[0] !== null) {
-          for (const cookieName of selectors){
-            document.getElementById(cookieName).checked = getCookie(cookieName)
-          }
-      } 
 }
