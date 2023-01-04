@@ -27,3 +27,20 @@ function getCookie(name) {
     }
   }
 }
+
+function getCookies(selectors,trigger){
+      trigger.forEach((elem) => {
+          elem.addEventListener("change", () => { 
+          for (const cookieName of selectors){
+            var cookieValue = document.getElementById(cookieName)
+            setCookie(cookieName, cookieValue.checked)
+          }
+            })      
+      });
+
+      if (selectors[0] !== null) {
+          for (const cookieName of selectors){
+            document.getElementById(cookieName).checked = getCookie(cookieName)
+          }
+      } 
+}
