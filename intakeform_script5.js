@@ -31,7 +31,8 @@ rev_recurring.style.visibility="hidden"
 
 /* page 6 elements */
 const p6_first_block = document.getElementById("p6_first_block")
-const EBITDA_wrapper = document.getElementById("EBITDA_wrapper")
+const EBITDA_wrapper = document.getElementById("EBITDA_wrapper_1")
+const EBITDA_wrapper = document.getElementById("EBITDA_wrapper_2")
 const prof_yes_button = document.getElementById("prof_yes_button")
 EBITDA_wrapper.style.display="none"
 
