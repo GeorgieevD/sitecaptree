@@ -31,10 +31,11 @@ rev_recurring.style.visibility="hidden"
 
 /* page 6 elements */
 const p6_first_block = document.getElementById("p6_first_block")
-const EBITDA_wrapper = document.getElementById("EBITDA_wrapper_1")
-const EBITDA_wrapper = document.getElementById("EBITDA_wrapper_2")
+const EBITDA_wrapper_1 = document.getElementById("EBITDA_wrapper_1")
+const EBITDA_wrapper_2 = document.getElementById("EBITDA_wrapper_2")
 const prof_yes_button = document.getElementById("prof_yes_button")
-EBITDA_wrapper.style.display="none"
+EBITDA_wrapper_1.style.display="none"
+EBITDA_wrapper_2.style.display="none"
 
 /* page 7elements */
 const p7_first_block = document.getElementById("p7_first_block")
