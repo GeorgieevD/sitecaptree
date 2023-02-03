@@ -42,11 +42,11 @@ const p7_first_block = document.getElementById("p7_first_block")
 const cf_negative = document.getElementById("cf_negative")
 const cf_positive = document.getElementById("cf_positive")
 const cf_not_sure = document.getElementById("cf_not_sure")
-const fcf_title = document.getElementById("fcf_title")
-const cash_burn_title = document.getElementById("cash_burn_title")
 const cashflow_wrapper = document.getElementById("cashflow_wrapper")
+const runway_wrapper = document.getElementById("runway_wrapper")
 
 cashflow_wrapper.style.visibility="hidden"
+runway_wrapper.style.visibility="hidden"
 
 
 /* page 8 elements */
