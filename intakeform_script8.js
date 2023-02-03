@@ -45,8 +45,8 @@ const cf_not_sure = document.getElementById("cf_not_sure")
 const cashflow_wrapper = document.getElementById("cashflow_wrapper")
 const runway_wrapper = document.getElementById("runway_wrapper")
 
-cashflow_wrapper.style.visibility="hidden"
-runway_wrapper.style.visibility="hidden"
+cashflow_wrapper.style.display="none"
+runway_wrapper.style.display="none"
 
 
 /* page 8 elements */
