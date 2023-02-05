@@ -22,6 +22,16 @@ function UpdatePGHeight(page_number) {
     }  	
 }
 
+function UpdateCurrencyMasks(currency) {
+   $("#revenue_input").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#EBITDA_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#CF_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#equity_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#cash_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#gross_debt_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#ticket_size").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});
+}
+
 
 const prev_button = document.getElementById("previous_button")
 const next_button = document.getElementById("next_button_slider")
