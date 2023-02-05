@@ -41,7 +41,7 @@ function ReportingCurrencyMasks(currency) {
    document.getElementById("cash_sub").innerHTML = "Cash in " + currency + "mn";
    document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + "mn";
    document.getElementById("SME_sub").innerHTML = "SMEs (<" + currency + "25mn rev.)";
-   document.getElementById("enterprise_sub").innerHTML "Enterprise (>" + currency + "25mn rev.)";
+   document.getElementById("enterprise_sub").innerHTML = "Enterprise (>" + currency + "25mn rev.)";
 }
 
 const prev_button = document.getElementById("previous_button")
