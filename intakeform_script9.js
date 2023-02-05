@@ -24,10 +24,16 @@ ct_other_div.style.visibility="hidden"
 
 /* page 5 elements */
 const p5_first_block = document.getElementById("p5_first_block")
-const rev_growth_wrapper = document.getElementById("rev_growth_wrapper")
 const rev_recurring = document.getElementById("rev_recurring")
-rev_growth_wrapper.style.visibility="hidden"
+const churn_wrapper = document.getElementById("churn_wrapper")
+const Recurring_20 = document.getElementById("Recurring_20")
+const Recurring_20_50 = document.getElementById("Recurring_20-50")
+const Recurring_50_80 = document.getElementById("Recurring_50-80")
+const Recurring_80 = document.getElementById("Recurring_80")
+const Recurring_NA = document.getElementById("Recurring_NA")
+
 rev_recurring.style.visibility="hidden"
+churn_wrapper.style.visibility="hidden"
 
 /* page 6 elements */
 const p6_first_block = document.getElementById("p6_first_block")
