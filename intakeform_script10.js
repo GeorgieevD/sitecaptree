@@ -4,11 +4,18 @@ var page_number = 0;
 /* page 1 elements */
 
 const raise_wrapper = document.getElementById("raise_wrapper")
-const funding_timing = document.getElementById("funding_timing_block")
-funding_timing.style.visibility="hidden"
+const Raise_currency_wrapper = document.getElementById("Raise_currency_wrapper")
+const Ticket_EUR = document.getElementById("Ticket_EUR")
+const Ticket_GBP = document.getElementById("Ticket_GBP")
+const Ticket_USD = document.getElementById("Ticket_USD")
+
+Raise_currency_wrapper.style.visibility="hidden"
+
 
 /* page 2 elements */
 const p2_first_block = document.getElementById("p2_first_block")
+const funding_timing = document.getElementById("funding_timing_block")
+funding_timing.style.visibility="hidden"
 
 /* page 3 elements */
 
