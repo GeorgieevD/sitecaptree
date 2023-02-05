@@ -20,6 +20,11 @@ funding_timing.style.visibility="hidden"
 /* page 3 elements */
 
 const grid_wapper_p3 = document.getElementById("grid_wrapper_p3")
+const Reporting_currency_wrapper = document.getElementById("Reporting_currency_wrapper")
+const Reporting_EUR = document.getElementById("Reporting_EUR")
+const Reporting_GBP = document.getElementById("Reporting_GBP")
+const Reporting_USD = document.getElementById("Reporting_USD")
+Reporting_currency_wrapper.style.visibility="hidden"
 
 /* page 4 elements */
 const year_wrapper = document.getElementById("year_wrapper")
