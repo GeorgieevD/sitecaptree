@@ -45,7 +45,7 @@ const Recurring_80 = document.getElementById("Recurring_80")
 const Recurring_NA = document.getElementById("Recurring_NA")
 
 rev_recurring.style.visibility="hidden"
-churn_wrapper.style.visibility="hidden"
+churn_wrapper.style.display="none"
 
 /* page 6 elements */
 const p6_first_block = document.getElementById("p6_first_block")
