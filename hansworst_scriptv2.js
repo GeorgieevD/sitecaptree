@@ -17,7 +17,7 @@ const productData = {
     description: "Debt financing for early-stage and scale-up companies.",
     dilution: "Dilution: Low",
     covenants: "Covenants: Light",
-    io_period: "IO period: 6-12 months"
+    io_period: "IO period: 12 months"
   },
   "Growth Debt": {
     price_range: "8 - 12",
@@ -25,7 +25,7 @@ const productData = {
     description: "Debt financing for high-growth companies.",
     dilution: "Dilution: Low",
     covenants: "Covenants: Moderate",
-    io_period: "IO period: 6-18 months"
+    io_period: "IO period: 18 months"
   },
   "Unitranche": {
     price_range: "6 - 9",
@@ -33,7 +33,7 @@ const productData = {
     description: "Single-tranche debt financing combining senior and subordinated debt.",
     dilution: "Dilution: None",
     covenants: "Covenants: Flexible",
-    io_period: "IO period: 12-24 months"
+    io_period: "IO period: 24 months"
   },
   "Revenue Based Financing": {
     price_range: "6 - 12",
@@ -41,7 +41,7 @@ const productData = {
     description: "Financing based on a percentage of a company's monthly revenue.",
     dilution: "Dilution: None",
     covenants: "Covenants: Light",
-    io_period: "IO period: 0-6 months"
+    io_period: "IO period: 6 months"
   },
   "Mezzanine": {
     price_range: "10 - 20",
@@ -49,7 +49,7 @@ const productData = {
     description: "Subordinated debt with equity-like features.",
     dilution: "Dilution: Medium",
     covenants: "Covenants: Flexible",
-    io_period: "IO period: 12-36 months"
+    io_period: "IO period: 36 months"
   },
   "Bank Loan": {
     price_range: "4 - 8",
@@ -57,7 +57,7 @@ const productData = {
     description: "Traditional bank loan for businesses.",
     dilution: "Dilution: none",
     covenants: "Covenants: Strict",
-    io_period: "IO period: 0-12 months"
+    io_period: "IO period: 12 months"
   },
   "Structured Products": {
     price_range: "Variable",
@@ -65,7 +65,8 @@ const productData = {
     description: "Customized financing products tailored to specific needs.",
     dilution: "Variable",
     covenants: "Variable",
-    io_period: "Variable"
+    io_period: "Variable",
+    quantum_range: "Variable"
   },
   "Asset Backed": {
     price_range: "5 - 12",
@@ -73,7 +74,7 @@ const productData = {
     description: "Loans backed by company assets.",
     dilution: "Dilution: None",
     covenants: "Covenants: Moderate",
-    io_period: "IO period: 0-12 months"
+    io_period: "IO period: 12 months"
   },
   "Growth Bank Loan": {
     price_range: "6 - 10",
@@ -81,7 +82,7 @@ const productData = {
     description: "Bank loan tailored for high-growth start-ups and scale-ups.",
     dilution: "Dilution: None",
     covenants: "Covenants: Moderate",
-    io_period: "IO period: 6-18 months"
+    io_period: "IO period: 18 months"
   }
 };
 
