@@ -112,7 +112,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
     "Structured Products": true,
-    "Asset Backed": UoF === "asset_financing",
+    "Asset Backed": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
     "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 30 && LTM_revenue_converted >= 10
   };
 
