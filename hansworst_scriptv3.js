@@ -142,7 +142,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minQuantum = Math.min(equityRaisedConverted, revenueConverted);
       const maxQuantum = Math.max(equityRaisedConverted, revenueConverted);
       console.log(maxQuantum - minQuantum)
-      if (maxQuantum - minQuantum < 1.) {
+      if (maxQuantum - minQuantum > 1.) {
         quantumRange = `${minQuantum.toFixed(0)} - ${maxQuantum.toFixed(0)}`;
       } else {
         quantumRange = `${minQuantum.toFixed(0)}`;
