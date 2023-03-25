@@ -12,52 +12,52 @@ function currencyConversion(amount, fromCurrency, toCurrency, conversionRates) {
 /// Static product data. To be replaced by live database
 const productData = {
   "Venture Debt": {
-    price_range: "10-15%",
-    duration_range: "2-4 years",
+    price_range: "10 - 15",
+    duration_range: "2 - 4",
     description: "Debt financing for early-stage and scale-up companies.",
-    dilution: "Low",
-    covenants: "Light",
-    io_period: "6-12 months"
+    dilution: "Dilution: Low",
+    covenants: "Covenants: Light",
+    io_period: "IO period: 6-12 months"
   },
   "Growth Debt": {
-    price_range: "8-12%",
-    duration_range: "3-6 years",
+    price_range: "8 - 12",
+    duration_range: "3 - 6",
     description: "Debt financing for high-growth companies.",
-    dilution: "Low",
-    covenants: "Moderate",
-    io_period: "6-18 months"
+    dilution: "Dilution: Low",
+    covenants: "Covenants: Moderate",
+    io_period: "IO period: 6-18 months"
   },
   "Unitranche": {
-    price_range: "6-9%",
-    duration_range: "5-7 years",
+    price_range: "6 - 9",
+    duration_range: "5 - 7",
     description: "Single-tranche debt financing combining senior and subordinated debt.",
-    dilution: "None",
-    covenants: "Flexible",
-    io_period: "12-24 months"
+    dilution: "Dilution: None",
+    covenants: "Covenants: Flexible",
+    io_period: "IO period: 12-24 months"
   },
   "Revenue Based Financing": {
-    price_range: "15-25%",
-    duration_range: "2-5 years",
+    price_range: "6 - 12",
+    duration_range: "0.5 - 2",
     description: "Financing based on a percentage of a company's monthly revenue.",
-    dilution: "None",
-    covenants: "Light",
-    io_period: "0-6 months"
+    dilution: "Dilution: None",
+    covenants: "Covenants: Light",
+    io_period: "IO period: 0-6 months"
   },
   "Mezzanine": {
-    price_range: "12-18%",
-    duration_range: "5-10 years",
+    price_range: "10 - 20",
+    duration_range: "5 - 10",
     description: "Subordinated debt with equity-like features.",
-    dilution: "Medium",
-    covenants: "Flexible",
-    io_period: "12-36 months"
+    dilution: "Dilution: Medium",
+    covenants: "Covenants: Flexible",
+    io_period: "IO period: 12-36 months"
   },
   "Bank Loan": {
-    price_range: "4-8%",
-    duration_range: "3-10 years",
+    price_range: "4 - 8",
+    duration_range: "3 - 10",
     description: "Traditional bank loan for businesses.",
-    dilution: "None",
-    covenants: "Strict",
-    io_period: "0-12 months"
+    dilution: "Dilution: none",
+    covenants: "Covenants: Strict",
+    io_period: "IO period: 0-12 months"
   },
   "Structured Products": {
     price_range: "Variable",
@@ -68,20 +68,20 @@ const productData = {
     io_period: "Variable"
   },
   "Asset Backed": {
-    price_range: "5-12%",
-    duration_range: "1-10 years",
+    price_range: "5 - 12",
+    duration_range: "1 - 10",
     description: "Loans backed by company assets.",
-    dilution: "None",
-    covenants: "Moderate",
-    io_period: "0-12 months"
+    dilution: "Dilution: None",
+    covenants: "Covenants: Moderate",
+    io_period: "IO period: 0-12 months"
   },
   "Growth Bank Loan": {
-    price_range: "6-10%",
-    duration_range: "5-7 years",
+    price_range: "6 - 10",
+    duration_range: "5 - 7",
     description: "Bank loan tailored for high-growth start-ups and scale-ups.",
-    dilution: "None",
-    covenants: "Moderate",
-    io_period: "6-18 months"
+    dilution: "Dilution: None",
+    covenants: "Covenants: Moderate",
+    io_period: "IO period: 6-18 months"
   }
 };
 
@@ -142,41 +142,41 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const maxQuantum = Math.max(equityRaisedConverted, revenueConverted);
 
       if (maxQuantum - minQuantum < 1.) {
-        quantumRange = `${minQuantum.toFixed(2)}-${maxQuantum.toFixed(2)}`;
+        quantumRange = `${minQuantum.toFixed(0)} - ${maxQuantum.toFixed(0)}`;
       } else {
-        quantumRange = `${minQuantum.toFixed(2)}`;
+        quantumRange = `${minQuantum.toFixed(0)}`;
       }
       break;
     case "Revenue Based Financing":
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${quantumConverted.toFixed(2)}`;
+      quantumRange = `${quantumConverted.toFixed(0)}`;
       break;
     case "Unitranche":
       const minEBITDA = 3 * LTM_EBITDA;
       const maxEBITDA = 5 * LTM_EBITDA;
       const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
       const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minEBITDAConverted.toFixed(2)}-${maxEBITDAConverted.toFixed(2)}`;
+      quantumRange = `${minEBITDAConverted.toFixed(0)} - ${maxEBITDAConverted.toFixed(0)}`;
       break;
     case "Mezzanine":
       const minMezzanine = 3 * LTM_EBITDA;
       const maxMezzanine = 6 * LTM_EBITDA;
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minMezzanineConverted.toFixed(2)}-${maxMezzanineConverted.toFixed(2)}`;
+      quantumRange = `${minMezzanineConverted.toFixed(0)} - ${maxMezzanineConverted.toFixed(0)}`;
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
       const maxBankLoan = 3 * LTM_EBITDA;
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minBankLoanConverted.toFixed(2)}-${maxBankLoanConverted.toFixed(2)}`;
+      quantumRange = `${minBankLoanConverted.toFixed(0)} - ${maxBankLoanConverted.toFixed(0)}`;
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(2)}`;
+      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(0)}`;
       break;
     default:
       break;
