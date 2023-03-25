@@ -59,15 +59,6 @@ const productData = {
     covenants: "Covenants: Strict",
     io_period: "IO period: 12 months"
   },
-  "Structured Products": {
-    price_range: "Variable",
-    duration_range: "Variable",
-    description: "Customized financing products tailored to specific needs.",
-    dilution: "Variable",
-    covenants: "Variable",
-    io_period: "Variable",
-    quantum_range: "Variable"
-  },
   "Asset Backed": {
     price_range: "5 - 12",
     duration_range: "1 - 10",
@@ -83,6 +74,15 @@ const productData = {
     dilution: "Dilution: None",
     covenants: "Covenants: Moderate",
     io_period: "IO period: 18 months"
+  },
+    "Structured Products": {
+    price_range: "Variable",
+    duration_range: "Variable",
+    description: "Customized financing products tailored to specific needs.",
+    dilution: "Variable",
+    covenants: "Variable",
+    io_period: "Variable",
+    quantum_range: "Variable"
   }
 };
 
@@ -111,9 +111,9 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Revenue Based Financing": (company_type === "start_up" || company_type === "scale_up") && LTM_revenue_converted >= 0.1,
     "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
-    "Structured Products": true,
+    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 30 && LTM_revenue_converted >= 10,
     "Asset Backed": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
-    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 30 && LTM_revenue_converted >= 10
+    "Structured Products": true
   };
 
   const filteredProducts = {};
