@@ -14,6 +14,7 @@ function setCookie(cookieName, cookieValue, nDays) {
 }
 
 function getCookie(name) {
+  console.log(name)
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) {
