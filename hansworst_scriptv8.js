@@ -60,6 +60,7 @@ const productData = {
     io_period: "IO period: 12 months"
   },
   "Asset Backed": {
+    quantum_range: "Variable",
     price_range: "5 - 12",
     duration_range: "1 - 10",
     description: "Loans backed by company assets.",
@@ -111,7 +112,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Revenue Based Financing": (company_type === "start_up" || company_type === "scale_up") && LTM_revenue_converted >= 0.1,
     "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
-    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 30 && LTM_revenue_converted >= 10,
+    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue_converted >= 10,
     "Asset Backed": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
     "Structured Products": true
   };
@@ -137,15 +138,23 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
   switch (product) {
     case "Venture Debt":
     case "Growth Debt":
-      const equityRaisedConverted = currencyConversion(equity_raised, reporting_currency, ticketCurrency, conversionRates);
-      const revenueConverted = currencyConversion(LTM_revenue, reporting_currency, ticketCurrency, conversionRates);
-      const minQuantum = Math.min(equityRaisedConverted, revenueConverted);
-      const maxQuantum = Math.max(equityRaisedConverted, revenueConverted);
-      console.log(maxQuantum - minQuantum)
-      if (maxQuantum - minQuantum > 1.) {
-        quantumRange = `${minQuantum.toFixed(0)} - ${maxQuantum.toFixed(0)}`;
+      const equityRaisedConverted = equity_raised ? currencyConversion(equity_raised, reporting_currency, ticketCurrency, conversionRates) : null;
+      const revenueConverted = LTM_revenue ? currencyConversion(LTM_revenue, reporting_currency, ticketCurrency, conversionRates) : null;
+
+      if (equityRaisedConverted !== null && revenueConverted !== null) {
+        const minQuantum = Math.min(equityRaisedConverted, revenueConverted);
+        const maxQuantum = Math.max(equityRaisedConverted, revenueConverted);
+        if (maxQuantum - minQuantum > 1) {
+          quantumRange = `${minQuantum.toFixed(0)} - ${maxQuantum.toFixed(0)}`;
+        } else {
+          quantumRange = `${minQuantum.toFixed(0)}`;
+        }
+      } else if (equityRaisedConverted !== null) {
+        quantumRange = `${equityRaisedConverted.toFixed(0)}`;
+      } else if (revenueConverted !== null) {
+        quantumRange = `${revenueConverted.toFixed(0)}`;
       } else {
-        quantumRange = `${minQuantum.toFixed(0)}`;
+        quantumRange = "N/A"; // You can set this to any placeholder value if both values are null
       }
       break;
     case "Revenue Based Financing":
