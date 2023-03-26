@@ -1,7 +1,7 @@
 const default_cookie_exp = 365
       
 function setCookie(cookieName, cookieValue, nDays) {
- 
+    console.log(name)    
     var today = new Date();
     var expire = new Date();
 
