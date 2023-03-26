@@ -15,17 +15,19 @@ const productData = {
     price_range: "10 - 15",
     duration_range: "2 - 4",
     description: "Debt financing for early-stage and scale-up companies.",
-    dilution: "Dilution: Low",
-    covenants: "Covenants: Light",
-    io_period: "IO period: 12 months"
+    dilution: "Low",
+    covenants: "None",
+    io_period: "6-12 months",
+    quantum_range_tooltip: "The maximum amount of venture debt you can raise is driven by a combination of raised equity and ARR" 
   },
   "Growth Debt": {
     price_range: "8 - 12",
     duration_range: "3 - 6",
     description: "Debt financing for high-growth companies.",
-    dilution: "Dilution: Low",
-    covenants: "Covenants: Moderate",
-    io_period: "IO period: 18 months"
+    dilution: "Low",
+    covenants: "Moderate",
+    io_period: "12-18 months",
+    quantum_range_tooltip: "The maximum amount of growth debt you can raise is driven by a combination of raised equity and ARR" 
   },
   "Unitranche": {
     price_range: "6 - 9",
@@ -33,48 +35,54 @@ const productData = {
     description: "Single-tranche debt financing combining senior and subordinated debt.",
     dilution: "Dilution: None",
     covenants: "Covenants: Flexible",
-    io_period: "IO period: 24 months"
+    io_period: "IO period: 12-24 months",
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA" 
   },
   "Revenue Based Financing": {
     price_range: "6 - 12",
     duration_range: "0.5 - 2",
     description: "Financing based on a percentage of a company's monthly revenue.",
-    dilution: "Dilution: None",
-    covenants: "Covenants: Light",
-    io_period: "IO period: 6 months"
+    dilution: "None",
+    covenants: "Light",
+    io_period: "<6 months",
+    quantum_range_tooltip: "The maximum amount of RBF you can raise is primarily driven by current MRR" 
   },
   "Mezzanine": {
     price_range: "10 - 20",
     duration_range: "5 - 10",
     description: "Subordinated debt with equity-like features.",
-    dilution: "Dilution: Medium",
-    covenants: "Covenants: Flexible",
-    io_period: "IO period: 36 months"
+    dilution: "Medium",
+    covenants: "Flexible",
+    io_period: "36 months",
+    quantum_range_tooltip: "The maximum amount of mezzanine financing you can raise is primarily driven by LTM EBITDA" 
   },
   "Bank Loan": {
     price_range: "4 - 8",
     duration_range: "3 - 10",
     description: "Traditional bank loan for businesses.",
-    dilution: "Dilution: none",
-    covenants: "Covenants: Strict",
-    io_period: "IO period: 12 months"
+    dilution: "None",
+    covenants: "Strict",
+    io_period: "<12 months",
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA"  
   },
   "Asset Backed": {
-    quantum_range: "Variable",
-    price_range: "5 - 12",
+    quantum_range: "70 - 100",
+    price_range: "6 - 12",
     duration_range: "1 - 10",
     description: "Loans backed by company assets.",
-    dilution: "Dilution: None",
-    covenants: "Covenants: Moderate",
-    io_period: "IO period: 12 months"
+    dilution: "None",
+    covenants: "Moderate",
+    io_period: "<12 months",
+    quantum_range_tooltip: "The maximum amount of financing you can raise to finance long-term assets is primarily driven by the quality of the underlying assets" 
   },
   "Growth Bank Loan": {
     price_range: "6 - 10",
     duration_range: "5 - 7",
     description: "Bank loan tailored for high-growth start-ups and scale-ups.",
-    dilution: "Dilution: None",
-    covenants: "Covenants: Moderate",
-    io_period: "IO period: 18 months"
+    dilution: "None",
+    covenants: "Moderate",
+    io_period: "6-18 months",
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by ARR" 
   },
     "Structured Products": {
     price_range: "Variable",
