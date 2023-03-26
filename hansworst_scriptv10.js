@@ -150,17 +150,17 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const revenueConverted = LTM_revenue ? currencyConversion(LTM_revenue, reporting_currency, ticketCurrency, conversionRates) : null;
 
       if (equityRaisedConverted !== null && revenueConverted !== null) {
-        const minQuantum = Math.min(equityRaisedConverted, revenueConverted);
-        const maxQuantum = Math.max(equityRaisedConverted, revenueConverted);
+        const minQuantum = Math.min(0.4 * equityRaisedConverted, revenueConverted);
+        const maxQuantum = Math.max(0.4 * equityRaisedConverted, revenueConverted);
         if (maxQuantum - minQuantum > 1) {
-          quantumRange = `${minQuantum.toFixed(0)} - ${maxQuantum.toFixed(0)}`;
+          quantumRange = `${minQuantum.toFixed(1)} - ${maxQuantum.toFixed(1)}`;
         } else {
-          quantumRange = `${minQuantum.toFixed(0)}`;
+          quantumRange = `${minQuantum.toFixed(1)}`;
         }
       } else if (equityRaisedConverted !== null) {
-        quantumRange = `${equityRaisedConverted.toFixed(0)}`;
+        quantumRange = `${equityRaisedConverted.toFixed(1)}`;
       } else if (revenueConverted !== null) {
-        quantumRange = `${revenueConverted.toFixed(0)}`;
+        quantumRange = `${revenueConverted.toFixed(1)}`;
       } else {
         quantumRange = "N/A"; // You can set this to any placeholder value if both values are null
       }
@@ -168,33 +168,33 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
     case "Revenue Based Financing":
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${quantumConverted.toFixed(0)}`;
+      quantumRange = `${quantumConverted.toFixed(1)}`;
       break;
     case "Unitranche":
       const minEBITDA = 3 * LTM_EBITDA;
       const maxEBITDA = 5 * LTM_EBITDA;
       const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
       const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minEBITDAConverted.toFixed(0)} - ${maxEBITDAConverted.toFixed(0)}`;
+      quantumRange = `${minEBITDAConverted.toFixed(1)} - ${maxEBITDAConverted.toFixed(1)}`;
       break;
     case "Mezzanine":
       const minMezzanine = 3 * LTM_EBITDA;
       const maxMezzanine = 6 * LTM_EBITDA;
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minMezzanineConverted.toFixed(0)} - ${maxMezzanineConverted.toFixed(0)}`;
+      quantumRange = `${minMezzanineConverted.toFixed(1)} - ${maxMezzanineConverted.toFixed(1)}`;
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
       const maxBankLoan = 3 * LTM_EBITDA;
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minBankLoanConverted.toFixed(0)} - ${maxBankLoanConverted.toFixed(0)}`;
+      quantumRange = `${minBankLoanConverted.toFixed(1)} - ${maxBankLoanConverted.toFixed(1)}`;
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(0)}`;
+      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(1)}`;
       break;
     default:
       break;
