@@ -35,3 +35,20 @@ function setCookies(selectors,trigger){
             })      
       });
 }
+
+function count_inputs(block_ID) {
+	var counter = 0
+	var check_block = $("#"+block_ID+" :input"); 
+  for (element of check_block ) {
+      if (element.type == "checkbox" || element.type == "radio") {
+          if(element.checked) { 
+              counter = counter + 1}
+      } else if (element.type == "text" || element.type == "number" ||  element.type == "select" ||  element.type == "email" || element.type == "select-one" ||  element.type == "textarea" ) {
+          if(element.value.length > 0){
+              counter = counter + 1
+          }    
+      }
+  }
+	return counter 
+}
+
