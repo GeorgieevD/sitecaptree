@@ -87,7 +87,7 @@ const productData = {
     "Structured Products": {
     price_range: "Variable",
     duration_range: "Variable",
-    description: "Customized financing products tailored to specific needs.",
+    description: "Our specialty lenders provide a wide range of products that fall outside of traditional, well-defined products. Select this product if you want to explore a more bespoke financing solution with one of our funding experts.",
     dilution: "Variable",
     covenants: "Variable",
     io_period: "Variable",
