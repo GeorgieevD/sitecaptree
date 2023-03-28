@@ -106,8 +106,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     UoF,
     reporting_currency,
     ticket_currency,
-    equity_raised,
-    asset_size
+    equity_raised
   } = company;
 
   const LTM_revenue_converted = currencyConversion(LTM_revenue, reporting_currency, outputCurrency, conversionRates);
@@ -140,7 +139,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
 
 /// Quantum range calculator
 function calculateQuantumRange(product, company, conversionRates, ticketCurrency) {
-  const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency } = company;
+  const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size } = company;
 
   let quantumRange = "";
 
