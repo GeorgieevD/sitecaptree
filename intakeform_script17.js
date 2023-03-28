@@ -104,7 +104,7 @@ function QuestionCheck(page_number) {
     prev_button.style.visibility="visible"
     if (count_inputs("raise_wrapper") > 0) {
 	if (uof_assets.checked){
-      		asset_size.style.display="flex"		    
+      		asset_wrapper.style.display="flex"		    
 		if (count_inputs("asset_wrapper") > 0){	
 			funding_timing.style.visibility="visible"}
 		if (count_inputs("asset_wrapper") == 0){
@@ -113,7 +113,7 @@ function QuestionCheck(page_number) {
 	else{funding_timing.style.visibility="visible"}}
     if (count_inputs("raise_wrapper") == 0) {
       funding_timing.style.visibility="hidden"
-      asset_size.style.display="none"		    
+      asset_wrapper.style.display="none"		    
       next_button.style.visibility="hidden"}
     if (count_inputs("funding_timing_block") > 0) {
       next_button.style.visibility="visible"}
