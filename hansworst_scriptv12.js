@@ -33,9 +33,9 @@ const productData = {
     price_range: "6 - 9",
     duration_range: "5 - 7",
     description: "Single-tranche debt financing combining senior and subordinated debt.",
-    dilution: "Dilution: None",
-    covenants: "Covenants: Flexible",
-    io_period: "IO period: 12-24 months",
+    dilution: "None",
+    covenants: "Flexible",
+    io_period: "12-24 months",
     quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA" 
   },
   "Revenue Based Financing": {
@@ -65,7 +65,7 @@ const productData = {
     io_period: "<12 months",
     quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA"  
   },
-  "Asset Backed": {
+  "Asset Backed Loan": {
     quantum_range: "70 - 100",
     price_range: "6 - 12",
     duration_range: "1 - 10",
@@ -106,7 +106,8 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     UoF,
     reporting_currency,
     ticket_currency,
-    equity_raised
+    equity_raised,
+    asset_size
   } = company;
 
   const LTM_revenue_converted = currencyConversion(LTM_revenue, reporting_currency, outputCurrency, conversionRates);
@@ -121,7 +122,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
     "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue_converted >= 10,
-    "Asset Backed": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
+    "Asset Backed Loan": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
     "Structured Products": true
   };
 
@@ -162,14 +163,16 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       } else if (revenueConverted !== null) {
         quantumRange = `${revenueConverted.toFixed(1)}`;
       } else {
-        quantumRange = "N/A"; // You can set this to any placeholder value if both values are null
+        quantumRange = "TBD"; // You can set this to any placeholder value if both values are null
       }
       break;
     case "Revenue Based Financing":
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${quantumConverted.toFixed(1)}`;
+      if isNaN(quantumRange){quantumRange = "TBD"}
       break;
+      
     case "Unitranche":
       const minEBITDA = 3 * LTM_EBITDA;
       const maxEBITDA = 5 * LTM_EBITDA;
@@ -183,6 +186,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minMezzanineConverted.toFixed(1)} - ${maxMezzanineConverted.toFixed(1)}`;
+      if isNaN(quantumRange){quantumRange = "TBD"}
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
@@ -190,12 +194,21 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minBankLoanConverted.toFixed(1)} - ${maxBankLoanConverted.toFixed(1)}`;
+      if isNaN(quantumRange){quantumRange = "TBD"}
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${revenueGrowthBankLoanConverted.toFixed(1)}`;
+      if isNaN(quantumRange){quantumRange = "TBD"}
       break;
+     case "Asset Backed Loan":
+      const assetSize = asset_size;
+      const minLTV = 0.7 * assetSize;
+      const maxLTV = 0.9 * assetSize;
+      quantumRange = `${minLTV.toFixed(1)} - ${maxLTV.toFixed(1)}`;
+      if isNaN(quantumRange){quantumRange = "TBD"}
+      break;     
     default:
       break;
   }
