@@ -24,7 +24,9 @@ function UpdatePGHeight(page_number) {
 
 function TicketCurrencyMasks(currency) {
    $("#ticket_size").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});
+   $("#asset_size").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});   
    document.getElementById("raise_sub").innerHTML = "Please enter amount in " + currency + "mn";	
+   document.getElementById("ticket_sub").innerHTML = "Please enter amount in " + currency + "mn";
 }
 
 function ReportingCurrencyMasks(currency) {
