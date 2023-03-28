@@ -110,7 +110,7 @@ function QuestionCheck(page_number) {
 		if (count_inputs("asset_wrapper") == 0){
 			funding_timing.style.visibility="hidden"}
 		}
-	else{funding_timing.style.visibility="visible"}
+	else{funding_timing.style.visibility="visible"}}
     if (count_inputs("raise_wrapper") == 0) {
       funding_timing.style.visibility="hidden"
       asset_size.style.display="none"		    
