@@ -8,14 +8,17 @@ const Raise_currency_wrapper = document.getElementById("Raise_currency_wrapper")
 const Ticket_EUR = document.getElementById("Ticket_EUR")
 const Ticket_GBP = document.getElementById("Ticket_GBP")
 const Ticket_USD = document.getElementById("Ticket_USD")
+const uof_assets = document.getElementById("uof_assets")
 
 Raise_currency_wrapper.style.visibility="hidden"
 
 
 /* page 2 elements */
 const p2_first_block = document.getElementById("p2_first_block")
+const asset_wrapper = document.getElementById("asset_wrapper")
 const funding_timing = document.getElementById("funding_timing_block")
 funding_timing.style.visibility="hidden"
+asset_wrapper.style.display="none"
 
 /* page 3 elements */
 
@@ -100,9 +103,17 @@ function QuestionCheck(page_number) {
 	if (page_number == 1){
     prev_button.style.visibility="visible"
     if (count_inputs("raise_wrapper") > 0) {
-      funding_timing.style.visibility="visible"}
+	if (uof_assets.checked){
+      		asset_size.style.display="flex"		    
+		if (count_inputs("asset_wrapper") > 0){	
+			funding_timing.style.visibility="visible"}
+		if (count_inputs("asset_wrapper") == 0){
+			funding_timing.style.visibility="hidden"}
+		}
+	else{funding_timing.style.visibility="visible"}
     if (count_inputs("raise_wrapper") == 0) {
       funding_timing.style.visibility="hidden"
+      asset_size.style.display="none"		    
       next_button.style.visibility="hidden"}
     if (count_inputs("funding_timing_block") > 0) {
       next_button.style.visibility="visible"}
