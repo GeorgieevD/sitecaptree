@@ -76,11 +76,11 @@ const productData = {
     quantum_range_tooltip: "The maximum amount of financing you can raise to finance long-term assets is primarily driven by the quality of the underlying assets" 
   },
   "Growth Bank Loan": {
-    price_range: "6 - 10",
-    duration_range: "5 - 7",
+    price_range: "3 - 6",
+    duration_range: "1 - 3",
     description: "Bank loan tailored for high-growth start-ups and scale-ups.",
     dilution: "None",
-    covenants: "Moderate",
+    covenants: "Strict",
     io_period: "6-18 months",
     quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by ARR" 
   },
@@ -169,7 +169,6 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${quantumConverted.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}
       break;
       
     case "Unitranche":
@@ -178,7 +177,6 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
       const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minEBITDAConverted.toFixed(1)} - ${maxEBITDAConverted.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}      
       break;
     case "Mezzanine":
       const minMezzanine = 3 * LTM_EBITDA;
@@ -186,7 +184,6 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minMezzanineConverted.toFixed(1)} - ${maxMezzanineConverted.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
@@ -194,20 +191,21 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minBankLoanConverted.toFixed(1)} - ${maxBankLoanConverted.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${revenueGrowthBankLoanConverted.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}
       break;
      case "Asset Backed Loan":
       const assetSize = asset_size;
       const minLTV = 0.7 * assetSize;
       const maxLTV = 0.9 * assetSize;
-      quantumRange = `${minLTV.toFixed(1)} - ${maxLTV.toFixed(1)}`;
-      if (isNaN(quantumRange)){quantumRange = "TBD"}
+      if (isNaN(assetSize)){
+        quantumRange = "TBD"
+      } else { 
+        quantumRange = `${minLTV.toFixed(1)} - ${maxLTV.toFixed(1)}
+      };
       break;     
     default:
       break;
