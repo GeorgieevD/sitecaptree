@@ -316,18 +316,28 @@ for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original el
 // Sort the copied elements based on the order_setting variable
 if (order_setting === "quantum") {
   copiedElements.sort(function(a, b) {
-    var quantumA = inputDict[a.querySelector("#product_name").innerHTML].quantum_range.split("-")[1];
-    var quantumB = inputDict[b.querySelector("#product_name").innerHTML].quantum_range.split("-")[1];
+    var productNameA = a.querySelector("#product_name");
+    var productNameB = b.querySelector("#product_name");
+    if (!productNameA || !productNameB) {
+      return 0;
+    }
+    var quantumA = inputDict[productNameA.innerHTML].quantum_range.split("-")[1];
+    var quantumB = inputDict[productNameB.innerHTML].quantum_range.split("-")[1];
     return quantumB - quantumA;
   });
 } else if (order_setting === "rate") {
   copiedElements.sort(function(a, b) {
-    var priceA = inputDict[a.querySelector("#product_name").innerHTML].price_range.split("-")[0];
-    var priceB = inputDict[b.querySelector("#product_name").innerHTML].price_range.split("-")[0];
+    var productNameA = a.querySelector("#product_name");
+    var productNameB = b.querySelector("#product_name");
+    if (!productNameA || !productNameB) {
+      return 0;
+    }
+    var priceA = inputDict[productNameA.innerHTML].price_range.split("-")[0];
+    var priceB = inputDict[productNameB.innerHTML].price_range.split("-")[0];
     return priceA - priceB;
   });
 }
-
+	
 // Insert the copied elements in the sorted order
 	copiedElements.forEach(function(copiedElement) {
   // Insert the copied element directly after the original element
