@@ -1,3 +1,4 @@
+var quantum_decimals = 0
 
 // Currency conversion
 function currencyConversion(amount, fromCurrency, toCurrency, conversionRates) {
@@ -153,14 +154,14 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
         const minQuantum = Math.min(0.4 * equityRaisedConverted, revenueConverted);
         const maxQuantum = Math.max(0.4 * equityRaisedConverted, revenueConverted);
         if (maxQuantum - minQuantum > 1) {
-          quantumRange = `${minQuantum.toFixed(1)} - ${maxQuantum.toFixed(1)}`;
+          quantumRange = `${minQuantum.toFixed(quantum_decimals)} - ${maxQuantum.toFixed(quantum_decimals)}`;
         } else {
-          quantumRange = `${minQuantum.toFixed(1)}`;
+          quantumRange = `${minQuantum.toFixed(quantum_decimals)}`;
         }
       } else if (equityRaisedConverted !== null) {
-        quantumRange = `${equityRaisedConverted.toFixed(1)}`;
+        quantumRange = `${equityRaisedConverted.toFixed(quantum_decimals)}`;
       } else if (revenueConverted !== null) {
-        quantumRange = `${revenueConverted.toFixed(1)}`;
+        quantumRange = `${revenueConverted.toFixed(quantum_decimals)}`;
       } else {
         quantumRange = "TBD"; // You can set this to any placeholder value if both values are null
       }
@@ -168,7 +169,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
     case "Revenue Based Financing":
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${quantumConverted.toFixed(1)}`;
+      quantumRange = `${quantumConverted.toFixed(quantum_decimals)}`;
       break;
       
     case "Unitranche":
@@ -176,26 +177,26 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const maxEBITDA = 5 * LTM_EBITDA;
       const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
       const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minEBITDAConverted.toFixed(1)} - ${maxEBITDAConverted.toFixed(1)}`;
+      quantumRange = `${minEBITDAConverted.toFixed(quantum_decimals)} - ${maxEBITDAConverted.toFixed(quantum_decimals)}`;
       break;
     case "Mezzanine":
       const minMezzanine = 3 * LTM_EBITDA;
       const maxMezzanine = 6 * LTM_EBITDA;
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minMezzanineConverted.toFixed(1)} - ${maxMezzanineConverted.toFixed(1)}`;
+      quantumRange = `${minMezzanineConverted.toFixed(quantum_decimals)} - ${maxMezzanineConverted.toFixed(quantum_decimals)}`;
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
       const maxBankLoan = 3 * LTM_EBITDA;
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minBankLoanConverted.toFixed(1)} - ${maxBankLoanConverted.toFixed(1)}`;
+      quantumRange = `${minBankLoanConverted.toFixed(quantum_decimals)} - ${maxBankLoanConverted.toFixed(quantum_decimals)}`;
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(1)}`;
+      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(quantum_decimals)}`;
       break;
      case "Asset Backed Loan":
       const assetSize = asset_size;
@@ -204,7 +205,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       if (isNaN(assetSize)){
         quantumRange = "TBD"
       } else { 
-        quantumRange = `${minLTV.toFixed(1)} - ${maxLTV.toFixed(1)}`;
+        quantumRange = `${minLTV.toFixed(quantum_decimals)} - ${maxLTV.toFixed(quantum_decimals)}`;
       };
       break;     
     default:
