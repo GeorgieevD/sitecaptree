@@ -227,3 +227,114 @@ function convertCurrencyToSymbol(currency) {
   }
 }
 
+function createCopiesFromDict(inputDict) {
+  // Get the original element to copy
+  var originalElement = document.getElementById("product_box");
+
+
+  // Define the number of copies to make
+  var number_of_elements = Object.keys(inputDict).length;
+	document.getElementById("text_products").innerHTML = String(number_of_elements)+" lending products";
+  
+  // Create an array to store the copied elements
+	var copiedElements = [];
+	
+// Loop through the number of copies to make
+for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
+
+  // Clone the original element and its children
+  var copiedElement = originalElement.cloneNode(true);
+
+  // Get the product name for this copy
+  var productName = Object.keys(inputDict)[i];
+
+  // Modify the ID names and textbox content of the copied elements
+  var elementsToModify = copiedElement.querySelectorAll("*[id]");
+  elementsToModify.forEach(function(element) {
+    var oldId = element.getAttribute("id");
+    var newId = oldId + "-" + productName;
+    element.setAttribute("id", newId);
+
+      // If this element is a textbox with content that should change,
+      // update its content based on the input dictionary
+      if (oldId === "product_name") {
+        element.innerHTML = productName;
+      } else if (oldId === "product_quantum") {
+        element.innerHTML = inputDict[productName].quantum_range;
+      } else if (oldId === "product_apr") {
+        element.innerHTML = inputDict[productName].price_range;
+      } else if (oldId === "product_maturity") {
+        element.innerHTML = inputDict[productName].duration_range;
+      } else if (oldId === "product_description") {
+        element.innerHTML = inputDict[productName].description;       
+      } else if (oldId === "product_dilution") {
+        element.innerHTML = inputDict[productName].dilution;
+      } else if (oldId === "product_covenants") {
+        element.innerHTML = inputDict[productName].covenants;            
+      } else if (oldId === "product_io_period") {
+        element.innerHTML = inputDict[productName].io_period;            
+      } else if (oldId === "product_check") {
+        element.setAttribute('name', productName);
+        element.setAttribute('data-name', productName);
+      } else if (oldId === "tooltip_rate") {
+				var quantum_tooltip_text = document.createElement('span')
+				quantum_tooltip_text.innerHTML = "Estimated annual interest rate on the loan, excluding any entry/exit fees, prepayment penalties, or any equity dilution" 
+        element.appendChild(quantum_tooltip_text);
+        quantum_tooltip_text.className ="tooltiptext"
+      } else if (oldId === "tooltip_duration") {
+				var quantum_tooltip_text = document.createElement('span')
+				quantum_tooltip_text.innerHTML = "Estimated time until maturity in years" 
+        element.appendChild(quantum_tooltip_text);
+        quantum_tooltip_text.className ="tooltiptext"    
+      } else if (oldId === "tooltip_dilution") {
+				var quantum_tooltip_text = document.createElement('span')
+				quantum_tooltip_text.innerHTML = "Some loan products include a return component that is dilutive to the equity, such as a warrant or call option" 
+        element.appendChild(quantum_tooltip_text);
+        quantum_tooltip_text.className ="tooltiptext"        
+      } else if (oldId === "tooltip_covenants") {
+				var quantum_tooltip_text = document.createElement('span')
+				quantum_tooltip_text.innerHTML = "Covenants are restrictive rules that prohibit the issuer from taking certain financial actions until maturity or repayment to protect the lender" 
+        element.appendChild(quantum_tooltip_text);
+        quantum_tooltip_text.className ="tooltiptext"        
+        
+      } else if (oldId === "quantum_unit") {
+				var quantum_tooltip_text = document.createElement('span')
+				quantum_tooltip_text.innerHTML = inputDict[productName].quantum_range_tooltip 
+        element.appendChild(quantum_tooltip_text);
+        quantum_tooltip_text.className ="tooltiptext"
+        
+      } else if (productName == "Structured Products"){
+      	if (oldId === "product_terms") {       	
+        	element.style.display = "none"
+        }
+      }
+    });
+  // Add the copied element to the array
+  copiedElements.push(copiedElement);
+}
+
+// Sort the copied elements based on the order_setting variable
+if (order_setting === "quantum") {
+  copiedElements.sort(function(a, b) {
+    var quantumA = inputDict[a.querySelector("#product_name").innerHTML].quantum_range.split("-")[1];
+    var quantumB = inputDict[b.querySelector("#product_name").innerHTML].quantum_range.split("-")[1];
+    return quantumB - quantumA;
+  });
+} else if (order_setting === "rate") {
+  copiedElements.sort(function(a, b) {
+    var priceA = inputDict[a.querySelector("#product_name").innerHTML].price_range.split("-")[0];
+    var priceB = inputDict[b.querySelector("#product_name").innerHTML].price_range.split("-")[0];
+    return priceA - priceB;
+  });
+}
+
+// Insert the copied elements in the sorted order
+	copiedElements.forEach(function(copiedElement) {
+  // Insert the copied element directly after the original element
+  	originalElement.insertAdjacentElement('beforebegin', copiedElement);
+});
+
+// Remove the original element
+originalElement.remove();
+}
+
