@@ -214,4 +214,15 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
   return quantumRange;
 }
 
+function convertCurrencyToSymbol(currency) {
+  if (currency === 'EUR') {
+    return '€';
+  } else if (currency === 'USD') {
+    return '$';
+  } else if (currency === 'GBP') {
+    return '£';
+  } else {
+    return null;
+  }
+}
 
