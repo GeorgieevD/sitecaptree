@@ -312,3 +312,45 @@ function createCopiesFromDict(inputDict) {
 originalElement.remove();
 }
 
+
+function orderDict(inputDict, order_setting, direction) {
+  var orderedKeys = Object.keys(inputDict);
+  
+  if (order_setting === "quantum") {
+    orderedKeys.sort(function(a, b) {
+      var quantumA = inputDict[a].quantum_range.split("-")[1];
+      var quantumB = inputDict[b].quantum_range.split("-")[1];
+      if (direction === "ascending") {
+        return quantumA - quantumB;
+      } else {
+        return quantumB - quantumA;
+      }
+    });
+  } else if (order_setting === "rate") {
+    orderedKeys.sort(function(a, b) {
+      var priceA = inputDict[a].price_range.split("-")[0];
+      var priceB = inputDict[b].price_range.split("-")[0];
+      if (direction === "ascending") {
+        return priceA - priceB;
+      } else {
+        return priceB - priceA;
+      }
+    });
+  } else {
+    // default to alphabetical order
+    orderedKeys.sort();
+  }
+
+  var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
+  if (structuredProductsIndex !== -1) {
+    orderedKeys.splice(structuredProductsIndex, 1);
+    orderedKeys.push("Structured Products");
+  }
+
+  var orderedDict = {};
+  for (var i = 0; i < orderedKeys.length; i++) {
+    orderedDict[orderedKeys[i]] = inputDict[orderedKeys[i]];
+  }
+  
+  return orderedDict;
+}
