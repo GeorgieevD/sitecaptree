@@ -227,7 +227,7 @@ function convertCurrencyToSymbol(currency) {
   }
 }
 
-function createCopiesFromDict(inputDict) {
+function createCopiesFromDict(inputDict, order_setting) {
   // Get the original element to copy
   var originalElement = document.getElementById("product_box");
 
