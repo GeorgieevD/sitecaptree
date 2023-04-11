@@ -231,6 +231,12 @@ function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
   var templateElement = document.getElementById("product_template");
+	
+  // Remove all existing copies of the product_box element
+  var copiedElements = document.querySelectorAll(".product-box-copy");
+  copiedElements.forEach(function(copiedElement) {
+    copiedElement.remove();
+  });
 
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
