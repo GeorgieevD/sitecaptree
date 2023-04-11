@@ -228,14 +228,9 @@ function convertCurrencyToSymbol(currency) {
 }
 
 function createCopiesFromDict(inputDict) {
-  // Remove all existing copies of the product_box element
-  var copiedElements = document.querySelectorAll(".product-box-copy");
-  	copiedElements.forEach(function(copiedElement) {
-    	copiedElement.remove();
-  });
 	
-  // Get the original element to copy
-  var originalElement = document.getElementById("product_box");
+  // Get the template element to copy
+  var templateElement = document.getElementById("product_template");
 
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
@@ -246,7 +241,9 @@ function createCopiesFromDict(inputDict) {
 
     // Clone the original element and its children
     var copiedElement = originalElement.cloneNode(true);
-
+    
+    // Add the 'product-box-copy' class to the copied element
+    copiedElement.classList.add("product-box-copy");
     // Get the product name for this copy
     var productName = Object.keys(inputDict)[i];
 
@@ -315,10 +312,9 @@ function createCopiesFromDict(inputDict) {
       }
     });
 
-    // Insert the copied element directly after the original element
-    originalElement.insertAdjacentElement('beforebegin', copiedElement);
-  }
-originalElement.remove();
+    // Insert the copied element directly after the template element
+    templateElement.insertAdjacentElement('beforebegin', copiedElement);
+  }	  
 }
 
 
