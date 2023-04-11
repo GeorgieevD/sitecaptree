@@ -228,6 +228,12 @@ function convertCurrencyToSymbol(currency) {
 }
 
 function createCopiesFromDict(inputDict) {
+  // Remove all existing copies of the product_box element
+  var copiedElements = document.querySelectorAll(".product-box-copy");
+  	copiedElements.forEach(function(copiedElement) {
+    	copiedElement.remove();
+  });
+	
   // Get the original element to copy
   var originalElement = document.getElementById("product_box");
 
