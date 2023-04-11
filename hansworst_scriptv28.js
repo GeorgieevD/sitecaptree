@@ -240,7 +240,7 @@ function createCopiesFromDict(inputDict) {
   for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
 
     // Clone the original element and its children
-    var copiedElement = originalElement.cloneNode(true);
+    var copiedElement = templateElement.cloneNode(true);
     
     // Add the 'product-box-copy' class to the copied element
     copiedElement.classList.add("product-box-copy");
