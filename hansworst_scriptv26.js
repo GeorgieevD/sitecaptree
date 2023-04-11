@@ -250,6 +250,9 @@ function createCopiesFromDict(inputDict) {
     // Get the product name for this copy
     var productName = Object.keys(inputDict)[i];
 
+    // Add the 'product-box-copy' class to the copied element
+    copiedElement.classList.add("product-box-copy");
+	  
     // Modify the ID names and textbox content of the copied elements
     var elementsToModify = copiedElement.querySelectorAll("*[id]");
     elementsToModify.forEach(function(element) {
