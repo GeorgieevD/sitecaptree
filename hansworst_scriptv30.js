@@ -321,6 +321,7 @@ function createCopiesFromDict(inputDict) {
     // Insert the copied element directly after the template element
     templateElement.insertAdjacentElement('beforebegin', copiedElement);
   }	  
+console.log("check")
 }
 
 
