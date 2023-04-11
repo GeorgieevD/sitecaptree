@@ -230,18 +230,18 @@ function convertCurrencyToSymbol(currency) {
 function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
-  var templateElement = document.getElementById("product_template");
+  var templateElement = document.getElementById("product_template");		
 	
   // Remove all existing copies of the product_box element
   var copiedElements = document.querySelectorAll(".product-box-copy");
   copiedElements.forEach(function(copiedElement) {
     copiedElement.remove();
   });
-
+  console.log(templateElement)
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
 	document.getElementById("text_products").innerHTML = String(number_of_elements)+" lending products";
-	
+  console.log(number_of_elements)		
   // Loop through the number of copies to make
   for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
 
