@@ -230,8 +230,8 @@ function convertCurrencyToSymbol(currency) {
 function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
-  var templateElement = document.querySelectorAll(".product-template");
-  console.log(templateElement)	
+  var templateElement = document.querySelector(".product-template");
+  console.log(document.querySelectorAll(".product-template"))	
 	
   // Remove all existing copies of the product_box element
   var copiedElements = document.querySelectorAll(".product-box-copy");
