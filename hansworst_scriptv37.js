@@ -230,8 +230,7 @@ function convertCurrencyToSymbol(currency) {
 function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
-  var templateElement = document.querySelector(".product-template");
-  console.log(document.querySelectorAll(".product-template"))	
+  var templateElement = document.getElementById("product_template");		
 	
   // Remove all existing copies of the product_box element
   var copiedElements = document.querySelectorAll(".product-box-copy");
@@ -253,9 +252,14 @@ function createCopiesFromDict(inputDict) {
     
     // Get the product name for this copy
     var productName = Object.keys(inputDict)[i];
-
+	
+    // change the ID of the copied element  
+    var newId = "copied product " + productName;
+    copiedElement.setAttribute("id", newId);      
+	  
     // Add the 'product-box-copy' class to the copied element
     copiedElement.classList.add("product-box-copy");
+    	  
 	  
     // Modify the ID names and textbox content of the copied elements
     var elementsToModify = copiedElement.querySelectorAll("*[id]");
