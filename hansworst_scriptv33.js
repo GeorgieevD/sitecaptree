@@ -231,25 +231,26 @@ function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
   var templateElement = document.getElementById("product_template");		
+  console.log(templateElement)	
 	
   // Remove all existing copies of the product_box element
   var copiedElements = document.querySelectorAll(".product-box-copy");
-  copiedElements.forEach(function(copiedElement) {
-    copiedElement.remove();
-  });
+  if (copiedElements.length > 0) {
+    copiedElements.forEach(function(copiedElement) {
+      copiedElement.remove();
+    });
+  }
   console.log(templateElement)
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
 	document.getElementById("text_products").innerHTML = String(number_of_elements)+" lending products";
-  console.log(number_of_elements)		
+
   // Loop through the number of copies to make
   for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
 
     // Clone the original element and its children
     var copiedElement = templateElement.cloneNode(true);
     
-    // Add the 'product-box-copy' class to the copied element
-    copiedElement.classList.add("product-box-copy");
     // Get the product name for this copy
     var productName = Object.keys(inputDict)[i];
 
@@ -321,7 +322,6 @@ function createCopiesFromDict(inputDict) {
     // Insert the copied element directly after the template element
     templateElement.insertAdjacentElement('beforebegin', copiedElement);
   }	  
-console.log("check")
 }
 
 
