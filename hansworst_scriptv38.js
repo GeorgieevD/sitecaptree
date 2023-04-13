@@ -107,7 +107,8 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     UoF,
     reporting_currency,
     ticket_currency,
-    equity_raised
+    equity_raised,
+    asset_size	
   } = company;
 
   const LTM_revenue_converted = currencyConversion(LTM_revenue, reporting_currency, outputCurrency, conversionRates);
@@ -122,7 +123,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
     "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue_converted >= 10,
-    "Asset Backed Loan": Array.isArray(UoF) ? UoF.includes("asset_financing") : UoF === "asset_financing",
+    "Asset Backed Loan": Array.isArray(UoF) ? (UoF.includes("asset_financing") && asset_size >= 1) : (UoF === "asset_financing" && asset_size >= 1),
     "Structured Products": true
   };
 
