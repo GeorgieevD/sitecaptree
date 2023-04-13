@@ -205,7 +205,9 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const maxLTV = 0.9 * assetSize;
       if (isNaN(assetSize)){
         quantumRange = "TBD"
-      } else { 
+      } else if (minLTV.toFixed(quantum_decimals) === maxLTV.toFixed(quantum_decimals)) {
+	      quantumRange = `${maxLTV.toFixed(quantum_decimals)}`
+      	} else { 
         quantumRange = `${minLTV.toFixed(quantum_decimals)} - ${maxLTV.toFixed(quantum_decimals)}`;
       };
       break;     
