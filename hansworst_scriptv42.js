@@ -149,7 +149,9 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
 
   for (const product in products) {
     if (products[product]) {
-      const quantum_range, maxQ = calculateQuantumRange(product, company, conversionRates, outputCurrency);
+      const qrOutput = calculateQuantumRange(product, company, conversionRates, outputCurrency);
+      const quantum_range = qrOutput[0]
+      const maxQ =  qrOutput[1]
       const quantum_met = (maxQ>=ticket_size)    
       filteredProducts[product] = { ...productData[product], quantum_range, quantum_met };
     }
@@ -242,7 +244,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       break;
   }
 
-  return quantumRange, maxQ;
+  return [quantumRange, maxQ];
 }
 
 function convertCurrencyToSymbol(currency) {
