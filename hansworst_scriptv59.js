@@ -273,7 +273,7 @@ function createCopiesFromDict(inputDict) {
   }
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
-	document.getElementById("text_products").innerHTML = String(number_of_elements)+" lending products";
+	document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan types";
 
   // Loop through the number of copies to make
   for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
