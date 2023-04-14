@@ -295,20 +295,7 @@ function createCopiesFromDict(inputDict) {
     var quantumAccolade = document.getElementById("quantum_accolade");		
     var rateAccolade = document.getElementById("rate_accolade");		
     var rankingAccolade = document.getElementById("ranking_accolade");		
-
-    quantumAccolade.style.display = 'none'
-    rateAccolade.style.display = 'none'
-    rankingAccolade.style.display = 'none'
-	  
-    if (inputDict[productName].quantum_met){
-	    quantumAccolade.style.display = "flex"} 
-	  
-    if (inputDict[productName].ranking == 'junior'){
-	    rankingAccolade.style.display = "flex"}
-	  
-    if (inputDict[productName].lowest_rate){
-	    rateAccolade.style.display = "flex"} 	  
-	  
+	 	  
     // Modify the ID names and textbox content of the copied elements
     var elementsToModify = copiedElement.querySelectorAll("*[id]");
     elementsToModify.forEach(function(element) {
@@ -320,8 +307,20 @@ function createCopiesFromDict(inputDict) {
       // update its content based on the input dictionary
       if (oldId === "product_name") {
         element.innerHTML = productName;
+      } else if (oldId === "quantum_accolade") {
+        	element.style.display = 'none'
+		if (inputDict[productName].quantum_met){
+	  		element.style.display = "flex"} 		      
+      } else if (oldId === "rate_accolade") {
+        	element.style.display = 'none'
+	        if (inputDict[productName].lowest_rate){
+	      		element.style.display = "flex"} 		      
+      } else if (oldId === "ranking_accolade") {
+        	element.style.display = 'none'
+	        if (inputDict[productName].ranking == 'junior'){
+	      		element.style.display = "flex"}
       } else if (oldId === "product_quantum") {
-        element.innerHTML = inputDict[productName].quantum_range;
+        element.innerHTML = inputDict[productName].quantum_range;	      
       } else if (oldId === "product_apr") {
         element.innerHTML = inputDict[productName].price_range;
       } else if (oldId === "product_maturity") {
