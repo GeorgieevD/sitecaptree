@@ -271,7 +271,6 @@ function createCopiesFromDict(inputDict) {
       copiedElement.remove();
     });
   }
-  console.log(templateElement)
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
 	document.getElementById("text_products").innerHTML = String(number_of_elements)+" lending products";
@@ -292,6 +291,23 @@ function createCopiesFromDict(inputDict) {
     // Add the 'product-box-copy' class to the copied element
     copiedElement.classList.add("product-box-copy");
     	  
+    // Check for accolades to be displayed or not
+    var quantumAccolade = document.getElementById("quantum_accolade");		
+    var rateAccolade = document.getElementById("rate_accolade");		
+    var rankingAccolade = document.getElementById("ranking_accolade");		
+
+    quantumAccolade.style.display = 'none'
+    rateAccolade.style.display = 'none'
+    rankingAccolade.style.display = 'none'
+	  
+    if (inputDict[productName].quantum_met){
+	    quantumAccolade.style.display = "flex"} 
+	  
+    if (inputDict[productName].ranking != 'senior'){
+	    rankingAccolade.style.display = "flex"}
+	  
+    if (inputDict[productName].lowest_rate){
+	    rateAccolade.style.display = "flex"} 	  
 	  
     // Modify the ID names and textbox content of the copied elements
     var elementsToModify = copiedElement.querySelectorAll("*[id]");
@@ -388,17 +404,22 @@ function orderDict(inputDict, order_setting, direction) {
     // default to alphabetical order
     orderedKeys.sort();
   }
-
-  var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
-  if (structuredProductsIndex !== -1) {
-    orderedKeys.splice(structuredProductsIndex, 1);
-    orderedKeys.push("Structured Products");
-  }
-
-  var orderedDict = {};
+  
+  var lowestRate = Number.MAX_VALUE;
+  var lowestRateKey = "";
+  
   for (var i = 0; i < orderedKeys.length; i++) {
-    orderedDict[orderedKeys[i]] = inputDict[orderedKeys[i]];
+    var key = orderedKeys[i];
+    var row = inputDict[key];
+    var price = parseFloat(row.price_range.split("-")[0]);
+    
+    if (price < lowestRate) {
+      lowestRate = price;
+      lowestRateKey = key;
+    }
+    
+    row.lowest_rate = key === lowestRateKey;
   }
   
-  return orderedDict;
+  return inputDict;
 }
