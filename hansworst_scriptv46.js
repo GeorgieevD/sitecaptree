@@ -303,7 +303,7 @@ function createCopiesFromDict(inputDict) {
     if (inputDict[productName].quantum_met){
 	    quantumAccolade.style.display = "flex"} 
 	  
-    if (inputDict[productName].ranking != 'senior'){
+    if (inputDict[productName].ranking == 'junior'){
 	    rankingAccolade.style.display = "flex"}
 	  
     if (inputDict[productName].lowest_rate){
