@@ -404,3 +404,4 @@ function orderDict(inputDict, order_setting, direction) {
     // default to alphabetical order
     orderedKeys.sort();
   }
+}
