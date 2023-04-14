@@ -404,5 +404,17 @@ function orderDict(inputDict, order_setting, direction) {
     // default to alphabetical order
     orderedKeys.sort();
   }
-return orderedKeys	
+
+  var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
+  if (structuredProductsIndex !== -1) {
+    orderedKeys.splice(structuredProductsIndex, 1);
+    orderedKeys.push("Structured Products");
+  }
+
+  var orderedDict = {};
+  for (var i = 0; i < orderedKeys.length; i++) {
+    orderedDict[orderedKeys[i]] = inputDict[orderedKeys[i]];
+  }
+  
+  return orderedDict;
 }
