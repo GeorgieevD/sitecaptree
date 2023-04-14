@@ -366,8 +366,8 @@ function createCopiesFromDict(inputDict) {
       } else if (oldId === "ranking_tooltip") {
 				var tooltip_text = document.createElement('span')
 				tooltip_text.innerHTML = inputDict[productName].ranking_tooltip 
-        element.appendChild(quantum_tooltip_text);
-        quantum_tooltip_text.className ="tooltiptext"        
+        element.appendChild(tooltip_text);
+        tooltip_text.className ="tooltiptext"        
       } else if (productName == "Structured Products"){
       	if (oldId === "product_terms") {       	
         	element.style.display = "none"
