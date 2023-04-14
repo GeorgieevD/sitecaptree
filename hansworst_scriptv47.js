@@ -404,22 +404,3 @@ function orderDict(inputDict, order_setting, direction) {
     // default to alphabetical order
     orderedKeys.sort();
   }
-  
-  var lowestRate = Number.MAX_VALUE;
-  var lowestRateKey = "";
-  
-  for (var i = 0; i < orderedKeys.length; i++) {
-    var key = orderedKeys[i];
-    var row = inputDict[key];
-    var price = parseFloat(row.price_range.split("-")[0]);
-    
-    if (price < lowestRate) {
-      lowestRate = price;
-      lowestRateKey = key;
-    }
-    
-    row.lowest_rate = key === lowestRateKey;
-  }
-  
-  return inputDict;
-}
