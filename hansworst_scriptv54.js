@@ -379,30 +379,26 @@ function createCopiesFromDict(inputDict) {
 function orderDict(inputDict, order_setting, direction) {
   var orderedKeys = Object.keys(inputDict);
 
-  if (order_setting === "quantum") {
-    orderedKeys.sort(function(a, b) {
-      var quantumA = inputDict[a].quantum_range.split("-")[1];
-      var quantumB = inputDict[b].quantum_range.split("-")[1];
-      if (direction === "ascending") {
-        return quantumA - quantumB;
-      } else {
-        return quantumB - quantumA;
-      }
-    });
-  } else if (order_setting === "rate") {
-    orderedKeys.sort(function(a, b) {
-      var priceA = inputDict[a].price_range.split("-")[0];
-      var priceB = inputDict[b].price_range.split("-")[0];
-      if (direction === "ascending") {
-        return priceA - priceB;
-      } else {
-        return priceB - priceA;
-      }
-    });
-  } else {
-    // default to alphabetical order
-    orderedKeys.sort();
-  }
+  orderedKeys.sort(function(a, b) {
+    var valA, valB;
+
+    if (order_setting === "quantum") {
+      valA = inputDict[a].quantum_range.split("-")[1];
+      valB = inputDict[b].quantum_range.split("-")[1];
+    } else if (order_setting === "rate") {
+      valA = inputDict[a].price_range.split("-")[0];
+      valB = inputDict[b].price_range.split("-")[0];
+    } else {
+      valA = a;
+      valB = b;
+    }
+
+    if (direction === "ascending") {
+      return valA.localeCompare(valB);
+    } else {
+      return valB.localeCompare(valA);
+    }
+  });
 
   var lowestRateKey = orderedKeys[0];
   var orderedDict = {};
