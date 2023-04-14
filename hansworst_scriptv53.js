@@ -378,7 +378,7 @@ function createCopiesFromDict(inputDict) {
 
 function orderDict(inputDict, order_setting, direction) {
   var orderedKeys = Object.keys(inputDict);
-  
+
   if (order_setting === "quantum") {
     orderedKeys.sort(function(a, b) {
       var quantumA = inputDict[a].quantum_range.split("-")[1];
@@ -404,16 +404,21 @@ function orderDict(inputDict, order_setting, direction) {
     orderedKeys.sort();
   }
 
-  var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
-  if (structuredProductsIndex !== -1) {
-    orderedKeys.splice(structuredProductsIndex, 1);
-    orderedKeys.push("Structured Products");
+  var lowestRateKey = orderedKeys[0];
+  var orderedDict = {};
+
+  for (var i = 0; i < orderedKeys.length; i++) {
+    var key = orderedKeys[i];
+    var row = inputDict[key];
+    var price = parseFloat(row.price_range.split("-")[0]);
+
+    if (price < parseFloat(inputDict[lowestRateKey].price_range.split("-")[0])) {
+      lowestRateKey = key;
+    }
+
+    row.lowest_rate = key === lowestRateKey;
+    orderedDict[key] = row;
   }
 
-  var orderedDict = {};
-  for (var i = 0; i < orderedKeys.length; i++) {
-    orderedDict[orderedKeys[i]] = inputDict[orderedKeys[i]];
-  }
-  
   return orderedDict;
 }
