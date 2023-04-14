@@ -206,8 +206,8 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       quantumRange = `${minEBITDAConverted.toFixed(quantum_decimals)} - ${maxEBITDAConverted.toFixed(quantum_decimals)}`;
       break;
     case "Mezzanine":
-      const minMezzanine = 3 * LTM_EBITDA;
-      const maxMezzanine = 6 * LTM_EBITDA;
+      const minMezzanine = 1 * LTM_EBITDA;
+      const maxMezzanine = 2 * LTM_EBITDA;
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minMezzanineConverted.toFixed(quantum_decimals)} - ${maxMezzanineConverted.toFixed(quantum_decimals)}`;
