@@ -19,7 +19,9 @@ const productData = {
     dilution: "Low",
     covenants: "None",
     io_period: "6-12 months",
-    quantum_range_tooltip: "The maximum amount of venture debt you can raise is driven by a combination of raised equity and ARR" 
+    quantum_range_tooltip: "The maximum amount of venture debt you can raise is driven by a combination of raised equity and ARR",
+    ranking: "senior",
+    ranking_tooltip: ""		  
   },
   "Growth Debt": {
     price_range: "8 - 12",
@@ -28,7 +30,9 @@ const productData = {
     dilution: "Low",
     covenants: "Moderate",
     io_period: "12-18 months",
-    quantum_range_tooltip: "The maximum amount of growth debt you can raise is driven by a combination of raised equity and ARR" 
+    quantum_range_tooltip: "The maximum amount of growth debt you can raise is driven by a combination of raised equity and ARR",
+    ranking: "senior",
+    ranking_tooltip: ""		  	  
   },
   "Unitranche": {
     price_range: "6 - 9",
@@ -37,7 +41,9 @@ const productData = {
     dilution: "None",
     covenants: "Flexible",
     io_period: "12-24 months",
-    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA" 
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA",
+    ranking: "senior",
+    ranking_tooltip: ""		  	  
   },
   "Revenue Based Financing": {
     price_range: "6 - 12",
@@ -46,7 +52,9 @@ const productData = {
     dilution: "None",
     covenants: "Light",
     io_period: "<6 months",
-    quantum_range_tooltip: "The maximum amount of RBF you can raise is primarily driven by current MRR" 
+    quantum_range_tooltip: "The maximum amount of RBF you can raise is primarily driven by current MRR",
+    ranking: "junior",
+    ranking_tooltip: "Can be added on top of existing or newly raised senior debt"		  	  
   },
   "Mezzanine": {
     price_range: "10 - 20",
@@ -55,7 +63,9 @@ const productData = {
     dilution: "Medium",
     covenants: "Flexible",
     io_period: "36 months",
-    quantum_range_tooltip: "The maximum amount of mezzanine financing you can raise is primarily driven by LTM EBITDA" 
+    quantum_range_tooltip: "The maximum amount of mezzanine financing you can raise is primarily driven by LTM EBITDA",
+    ranking: "junior",
+    ranking_tooltip: "Typically raised on top of new bank loan or existing debt"		  	  	  
   },
   "Bank Loan": {
     price_range: "4 - 8",
@@ -64,7 +74,9 @@ const productData = {
     dilution: "None",
     covenants: "Strict",
     io_period: "<12 months",
-    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA"  
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA",
+    ranking: "senior",
+    ranking_tooltip: ""		  	  	  	  
   },
   "Asset Backed Loan": {
     quantum_range: "70 - 100",
@@ -74,7 +86,9 @@ const productData = {
     dilution: "None",
     covenants: "Moderate",
     io_period: "<12 months",
-    quantum_range_tooltip: "The maximum amount of financing you can raise to finance long-term assets is primarily driven by the quality of the underlying assets" 
+    quantum_range_tooltip: "The maximum amount of financing you can raise to finance long-term assets is primarily driven by the quality of the underlying assets", 
+    ranking: "senior",
+    ranking_tooltip: ""		  	  	  	  	  
   },
   "Growth Bank Loan": {
     price_range: "3 - 6",
@@ -83,7 +97,9 @@ const productData = {
     dilution: "None",
     covenants: "Strict",
     io_period: "6-18 months",
-    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by ARR" 
+    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by ARR",
+    ranking: "senior",
+    ranking_tooltip: ""		  	  	  	  	  
   },
     "Structured Products": {
     price_range: "Variable",
@@ -92,7 +108,9 @@ const productData = {
     dilution: "Variable",
     covenants: "Variable",
     io_period: "Variable",
-    quantum_range: "Variable"
+    quantum_range: "Variable",
+    ranking: "",
+    ranking_tooltip: ""		    
   }
 };
 
@@ -131,8 +149,9 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
 
   for (const product in products) {
     if (products[product]) {
-      const quantum_range = calculateQuantumRange(product, company, conversionRates, outputCurrency);
-      filteredProducts[product] = { ...productData[product], quantum_range };
+      const quantum_range, maxQ = calculateQuantumRange(product, company, conversionRates, outputCurrency);
+      const quantum_met = (maxQ>=ticket_size)    
+      filteredProducts[product] = { ...productData[product], quantum_range, quantum_met };
     }
   }
 
@@ -144,6 +163,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
   const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size } = company;
 
   let quantumRange = "";
+  let maxQ = 0;
 
   switch (product) {
     case "Venture Debt":
@@ -154,6 +174,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       if (equityRaisedConverted !== null && revenueConverted !== null) {
         const minQuantum = Math.min(0.4 * equityRaisedConverted, revenueConverted);
         const maxQuantum = Math.max(0.4 * equityRaisedConverted, revenueConverted);
+	maxQ = maxQuantum
         if (maxQuantum - minQuantum > 1) {
           quantumRange = `${minQuantum.toFixed(quantum_decimals)} - ${maxQuantum.toFixed(quantum_decimals)}`;
         } else {
@@ -170,6 +191,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
     case "Revenue Based Financing":
       const quantum = 0.5 * LTM_revenue;
       const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
+      maxQ = quantumConverted
       quantumRange = `${quantumConverted.toFixed(quantum_decimals)}`;
       break;
       
@@ -178,6 +200,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const maxEBITDA = 5 * LTM_EBITDA;
       const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
       const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
+      maxQ = maxEBITDAConverted
       quantumRange = `${minEBITDAConverted.toFixed(quantum_decimals)} - ${maxEBITDAConverted.toFixed(quantum_decimals)}`;
       break;
     case "Mezzanine":
@@ -186,6 +209,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
       const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minMezzanineConverted.toFixed(quantum_decimals)} - ${maxMezzanineConverted.toFixed(quantum_decimals)}`;
+      maxQ = maxMezzanineConverted
       break;
     case "Bank Loan":
       const minBankLoan = 1 * LTM_EBITDA;
@@ -193,16 +217,19 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
       const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${minBankLoanConverted.toFixed(quantum_decimals)} - ${maxBankLoanConverted.toFixed(quantum_decimals)}`;
+      maxQ = maxBankLoanConverted
       break;
     case "Growth Bank Loan":
       const revenueGrowthBankLoan = LTM_revenue;
       const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
       quantumRange = `${revenueGrowthBankLoanConverted.toFixed(quantum_decimals)}`;
+      maxQ = revenueGrowthBankLoanConverted      	  
       break;
      case "Asset Backed Loan":
       const assetSize = asset_size;
       const minLTV = 0.7 * assetSize;
       const maxLTV = 0.9 * assetSize;
+      maxQ = maxLTV	  
       if (isNaN(assetSize)){
         quantumRange = "TBD"
       } else if (minLTV.toFixed(quantum_decimals) === maxLTV.toFixed(quantum_decimals)) {
@@ -215,7 +242,7 @@ function calculateQuantumRange(product, company, conversionRates, ticketCurrency
       break;
   }
 
-  return quantumRange;
+  return quantumRange, maxQ;
 }
 
 function convertCurrencyToSymbol(currency) {
