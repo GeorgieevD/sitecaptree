@@ -398,26 +398,24 @@ function findLowestRateRow(inputDict, order_setting) {
 function orderDict(inputDict, order_setting, direction) {
   var orderedKeys = Object.keys(inputDict);
 
-  if (order_setting === "quantum") {
-    orderedKeys.sort(function(a, b) {
-      var quantumA = inputDict[a].quantum_range.split("-")[1];
-      var quantumB = inputDict[b].quantum_range.split("-")[1];
-      if (direction === "ascending") {
-        return quantumA - quantumB;
-      } else {
-        return quantumB - quantumA;
-      }
-    });
-  } else if (order_setting === "rate") {
-    orderedKeys.sort(function(a, b) {
-      var priceA = inputDict[a].price_range.split("-")[0];
-      var priceB = inputDict[b].price_range.split("-")[0];
-      if (direction === "ascending") {
-        return priceA - priceB;
-      } else {
-        return priceB - priceA;
-      }
-    });
+if (order_setting === "quantum") {
+  orderedKeys.sort(function(a, b) {
+    var quantumA = inputDict[a].quantum_range.split("-")[1];
+    if (quantumA === undefined) {
+      // quantum_range contains a single number
+      quantumA = inputDict[a].quantum_range;
+    }
+    var quantumB = inputDict[b].quantum_range.split("-")[1];
+    if (quantumB === undefined) {
+      // quantum_range contains a single number
+      quantumB = inputDict[b].quantum_range;
+    }
+    if (direction === "ascending") {
+      return quantumA - quantumB;
+    } else {
+      return quantumB - quantumA;
+    }
+  });
   } else {
     // default to alphabetical order
     orderedKeys.sort();
