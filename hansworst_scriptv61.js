@@ -421,6 +421,13 @@ if (order_setting === "quantum") {
     orderedKeys.sort();
   }
 
+// Make sure "Structured Products" is always last
+var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
+if (structuredProductsIndex !== -1) {
+  orderedKeys.splice(structuredProductsIndex, 1);
+  orderedKeys.push("Structured Products");
+}	
+	
   var lowestRateKey = findLowestRateRow(inputDict, order_setting);
   var orderedDict = {};
 
