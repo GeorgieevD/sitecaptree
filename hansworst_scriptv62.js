@@ -15,7 +15,7 @@ const productData = {
   "Venture Debt": {
     price_range: "10 - 15",
     duration_range: "2 - 4",
-    description: "Debt financing for early-stage and scale-up companies.",
+    description: "Debt financing for early-stage and scale-up companies",
     dilution: "Low",
     covenants: "None",
     io_period: "6-12 months",
@@ -26,7 +26,7 @@ const productData = {
   "Growth Debt": {
     price_range: "8 - 12",
     duration_range: "3 - 6",
-    description: "Debt financing for high-growth companies.",
+    description: "Debt financing for high-growth companies",
     dilution: "Low",
     covenants: "Moderate",
     io_period: "12-18 months",
@@ -37,7 +37,7 @@ const productData = {
   "Unitranche": {
     price_range: "6 - 9",
     duration_range: "5 - 7",
-    description: "Single-tranche debt financing combining senior and subordinated debt.",
+    description: "Single-tranche debt financing combining senior and subordinated debt",
     dilution: "None",
     covenants: "Flexible",
     io_period: "12-24 months",
@@ -48,18 +48,18 @@ const productData = {
   "Revenue Based Financing": {
     price_range: "6 - 12",
     duration_range: "0.5 - 2",
-    description: "Financing based on a percentage of a company's monthly revenue.",
+    description: "Financing based on a percentage of a company's monthly revenue",
     dilution: "None",
     covenants: "Light",
     io_period: "<6 months",
     quantum_range_tooltip: "The maximum amount of RBF you can raise is primarily driven by current MRR",
     ranking: "junior",
-    ranking_tooltip: "Can be added on top of existing or newly raised senior debt"		  	  
+    ranking_tooltip: "Can be raised as stand-alone facility or added on top of existing or newly raised senior debt"		  	  
   },
   "Mezzanine": {
     price_range: "10 - 20",
     duration_range: "5 - 10",
-    description: "Subordinated debt with equity-like features.",
+    description: "Subordinated debt with equity-like features",
     dilution: "Medium",
     covenants: "Flexible",
     io_period: "36 months",
@@ -70,7 +70,7 @@ const productData = {
   "Bank Loan": {
     price_range: "4 - 8",
     duration_range: "3 - 10",
-    description: "Traditional bank loan for businesses.",
+    description: "Traditional bank loan for businesses",
     dilution: "None",
     covenants: "Strict",
     io_period: "<12 months",
@@ -82,7 +82,7 @@ const productData = {
     quantum_range: "70 - 100",
     price_range: "6 - 12",
     duration_range: "1 - 10",
-    description: "Loans backed by company assets.",
+    description: "Loans backed by company assets",
     dilution: "None",
     covenants: "Moderate",
     io_period: "<12 months",
@@ -93,7 +93,7 @@ const productData = {
   "Growth Bank Loan": {
     price_range: "3 - 6",
     duration_range: "1 - 3",
-    description: "Bank loan tailored for high-growth start-ups and scale-ups.",
+    description: "Bank loan tailored for high-growth start-ups and scale-ups",
     dilution: "None",
     covenants: "Strict",
     io_period: "6-18 months",
@@ -104,7 +104,7 @@ const productData = {
     "Structured Products": {
     price_range: "Variable",
     duration_range: "Variable",
-    description: "Our specialty lenders provide a wide range of products that fall outside of traditional, well-defined products. Select this product if you want to explore a more bespoke financing solution with one of our funding experts.",
+    description: "Our specialty lenders provide a wide range of products that fall outside of traditional, well-defined products. Select this product if you want to explore a more bespoke financing solution with one of our funding experts",
     dilution: "Variable",
     covenants: "Variable",
     io_period: "Variable",
@@ -343,7 +343,7 @@ function createCopiesFromDict(inputDict) {
         quantum_tooltip_text.className ="tooltiptext"
       } else if (oldId === "tooltip_duration") {
 				var quantum_tooltip_text = document.createElement('span')
-				quantum_tooltip_text.innerHTML = "Estimated time until maturity in years" 
+				quantum_tooltip_text.innerHTML = "The time between closing and maturity of the loan" 
         element.appendChild(quantum_tooltip_text);
         quantum_tooltip_text.className ="tooltiptext"    
       } else if (oldId === "tooltip_dilution") {
