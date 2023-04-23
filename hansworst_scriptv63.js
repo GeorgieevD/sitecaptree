@@ -58,35 +58,35 @@ const productData = {
   },
   "Mezzanine": {
     price_range: "10 - 20",
-    duration_range: "5 - 10",
-    description: "Subordinated debt with equity-like features",
-    dilution: "Medium",
+    duration_range: "5 - 8",
+    description: "Subordinated debt with sometimes equity-like features",
+    dilution: "Possible",
     covenants: "Flexible",
     io_period: "36 months",
-    quantum_range_tooltip: "The maximum amount of mezzanine financing you can raise is primarily driven by LTM EBITDA",
+    quantum_range_tooltip: "The maximum amount of mezzanine financing is primarily driven by LTM EBITDA",
     ranking: "junior",
-    ranking_tooltip: "Typically raised on top of new bank loan or existing debt"		  	  	  
+    ranking_tooltip: "Typically raised on top of a new bank loan or existing debt"		  	  	  
   },
   "Bank Loan": {
     price_range: "4 - 8",
-    duration_range: "3 - 10",
+    duration_range: "1 - 5",
     description: "Traditional bank loan for businesses",
     dilution: "None",
     covenants: "Strict",
     io_period: "<12 months",
-    quantum_range_tooltip: "The maximum amount of debt you can raise is primarily driven by LTM EBITDA",
+    quantum_range_tooltip: "The maximum amount of debt is primarily driven by LTM EBITDA",
     ranking: "senior",
     ranking_tooltip: ""		  	  	  	  
   },
   "Asset Backed Loan": {
     quantum_range: "70 - 100",
-    price_range: "6 - 12",
-    duration_range: "1 - 10",
-    description: "Loans backed by company assets",
+    price_range: "5 - 12",
+    duration_range: "2 - 5",
+    description: "Debt that is secured by your debtor book or fixed assets",
     dilution: "None",
     covenants: "Moderate",
     io_period: "<12 months",
-    quantum_range_tooltip: "The maximum amount of financing you can raise to finance long-term assets is primarily driven by the quality of the underlying assets", 
+    quantum_range_tooltip: "The maximum amount of financing is primarily driven by the quality and value of the underlying assets", 
     ranking: "senior",
     ranking_tooltip: ""		  	  	  	  	  
   },
@@ -101,10 +101,10 @@ const productData = {
     ranking: "senior",
     ranking_tooltip: ""		  	  	  	  	  
   },
-    "Structured Products": {
+    "Speciality Financing": {
     price_range: "Variable",
     duration_range: "Variable",
-    description: "Our specialty lenders provide a wide range of products that fall outside of traditional, well-defined products. Select this product if you want to explore a more bespoke financing solution with one of our funding experts",
+    description: "Our specialty lenders indicated that they want to lend to companies like yours. Select this product if you want to explore a bespoke solution with our funding experts",
     dilution: "Variable",
     covenants: "Variable",
     io_period: "Variable",
@@ -142,7 +142,7 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
     "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
     "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue_converted >= 10,
     "Asset Backed Loan": Array.isArray(UoF) ? (UoF.includes("asset_financing") && asset_size >= 1) : (UoF === "asset_financing" && asset_size >= 1),
-    "Structured Products": true
+    "Specialty Financing": true
   };
 
   const filteredProducts = {};
@@ -368,7 +368,7 @@ function createCopiesFromDict(inputDict) {
 				tooltip_text.innerHTML = inputDict[productName].ranking_tooltip 
         element.appendChild(tooltip_text);
         tooltip_text.className ="tooltiptext"        
-      } else if (productName == "Structured Products"){
+      } else if (productName == "Specialty Financing"){
       	if (oldId === "product_terms") {       	
         	element.style.display = "none"
         }
@@ -421,11 +421,11 @@ if (order_setting === "quantum") {
     orderedKeys.sort();
   }
 
-// Make sure "Structured Products" is always last
-var structuredProductsIndex = orderedKeys.indexOf("Structured Products");
-if (structuredProductsIndex !== -1) {
-  orderedKeys.splice(structuredProductsIndex, 1);
-  orderedKeys.push("Structured Products");
+// Make sure "Specialty Financing" is always last
+var SpecialtyFinancingIndex = orderedKeys.indexOf("Specialty Financing");
+if (SpecialtyFinancingIndex !== -1) {
+  orderedKeys.splice(SpecialtyFinancingIndex, 1);
+  orderedKeys.push("Specialty Financing");
 }	
 	
   var lowestRateKey = findLowestRateRow(inputDict, order_setting);
