@@ -10,7 +10,7 @@ const Ticket_GBP = document.getElementById("Ticket_GBP")
 const Ticket_USD = document.getElementById("Ticket_USD")
 const uof_assets = document.getElementById("uof_assets")
 
-Raise_currency_wrapper.style.visibility="hidden"
+Raise_currency_wrapper.style.display="none"
 
 
 /* page 2 elements */
@@ -82,9 +82,9 @@ equity_wrapper.style.visibility="hidden"
 function QuestionCheck(page_number) {
 	if (page_number == 0){
     if (count_inputs("p1_first_block") > 0) {
-      Raise_currency_wrapper.style.visibility="visible"}
+      Raise_currency_wrapper.style.display="flex"}
     if (count_inputs("p1_first_block") == 0) {
-      Raise_currency_wrapper.style.visibility="hidden"
+      Raise_currency_wrapper.style.display="none"
       next_button.style.visibility="hidden"}
     if (Ticket_EUR.checked){
     	ticket_currency = '€'
