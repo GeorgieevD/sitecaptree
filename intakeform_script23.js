@@ -254,11 +254,11 @@ function QuestionCheck(page_number) {
 		fake_next_button.style.visibility="hidden"
     if (count_inputs("p9_first_block") > 0 & !asset_type_NA.checked ) {
       asset_wrapper.style.display="flex"}
-    if (count_inputs("p8_first_block") <= 0 | asset_type_NA.checked ) {
+    if (count_inputs("p9_first_block") <= 0 | asset_type_NA.checked ) {
       asset_wrapper.style.display="none"}
-    if (count_inputs("asset_wrapper") > 0) {
+    if (count_inputs("asset_wrapper") > 0 | asset_type_NA.checked) {
       submit_button.style.visibility="visible"}
-    if (count_inputs("asset_wrapper") <= 0) {
+    if ((count_inputs("asset_wrapper") <= 0 & !asset_type_NA.checked) | count_inputs("p9_first_block") <= 0) {
       submit_button.style.visibility="hidden"} 
     UpdatePGHeight(page_number)
 	} 
