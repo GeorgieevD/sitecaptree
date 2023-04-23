@@ -52,7 +52,7 @@ const fake_next_button = document.getElementById("fake_next_button")
 const submit_button = document.getElementById("Submit_button")
 
 next_button.style.visibility="hidden"
-submit_button.style.visibility="hidden"
+submit_button.style.display="none"
 
 next_button.addEventListener("click", () => { 
 	page_number = page_number + 1
