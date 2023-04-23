@@ -15,10 +15,8 @@ Raise_currency_wrapper.style.display="none"
 
 /* page 2 elements */
 const p2_first_block = document.getElementById("p2_first_block")
-const asset_wrapper = document.getElementById("asset_wrapper")
 const funding_timing = document.getElementById("funding_timing_block")
 funding_timing.style.visibility="hidden"
-asset_wrapper.style.display="none"
 
 /* page 3 elements */
 
@@ -108,17 +106,9 @@ function QuestionCheck(page_number) {
 	if (page_number == 1){
     prev_button.style.visibility="visible"
     if (count_inputs("raise_wrapper") > 0) {
-	if (uof_assets.checked){
-      		asset_wrapper.style.display="flex"		    
-		if (count_inputs("asset_wrapper") > 0){	
-			funding_timing.style.visibility="visible"}
-		if (count_inputs("asset_wrapper") == 0){
-			funding_timing.style.visibility="hidden"}
-		}
-	else{funding_timing.style.visibility="visible"}}
+    	funding_timing.style.visibility="visible"}
     if (count_inputs("raise_wrapper") == 0) {
       funding_timing.style.visibility="hidden"
-      asset_wrapper.style.display="none"		    
       next_button.style.visibility="hidden"}
     if (count_inputs("funding_timing_block") > 0) {
       next_button.style.visibility="visible"}
@@ -254,9 +244,9 @@ function QuestionCheck(page_number) {
     if (count_inputs("equity_wrapper") <= 0) {
       cap_wrapper.style.visibility="hidden"}
     if (count_inputs("cap_wrapper") > 0) {
-      submit_button.style.visibility="visible"}
+      next_button.style.visibility="visible"}
     if (count_inputs("cap_wrapper") <= 0) {
-      submit_button.style.visibility="hidden"} 
+      next_button.style.visibility="hidden"} 
     UpdatePGHeight(page_number)
 	}
 	
