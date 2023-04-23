@@ -257,7 +257,7 @@ function QuestionCheck(page_number) {
     if (count_inputs("p9_first_block") <= 0 | asset_type_NA.checked ) {
       asset_wrapper.style.display="none"}
     if (count_inputs("asset_wrapper") > 0 | asset_type_NA.checked) {
-      submit_button.style.display="flex"}
+      submit_button.style.display="block"}
     if ((count_inputs("asset_wrapper") <= 0 & !asset_type_NA.checked) | count_inputs("p9_first_block") <= 0) {
       submit_button.style.display="none"} 
     UpdatePGHeight(page_number)
