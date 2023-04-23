@@ -77,6 +77,11 @@ const cap_wrapper = document.getElementById("cap_wrapper")
 cap_wrapper.style.visibility="hidden"
 equity_wrapper.style.visibility="hidden"
 
+/* page 9 elements */
+const p9_first_block = document.getElementById("p9_first_block")
+const asset_type_NA = document.getElementById("asset_type_NA")
+const asset_wrapper = document.getElementById("asset_wrapper")
+asset_wrapper.style.display="none"
 
 
 function QuestionCheck(page_number) {
@@ -239,7 +244,6 @@ function QuestionCheck(page_number) {
 	} 
   
 	if (page_number == 8){
-		fake_next_button.style.visibility="hidden"
     if (count_inputs("p8_first_block") > 0) {
       equity_wrapper.style.visibility="visible"}
     if (count_inputs("p8_first_block") <= 0) {
@@ -254,6 +258,20 @@ function QuestionCheck(page_number) {
     if (count_inputs("cap_wrapper") <= 0) {
       submit_button.style.visibility="hidden"} 
     UpdatePGHeight(page_number)
+	}
+	
+	if (page_number == 9){
+		fake_next_button.style.visibility="hidden"
+    if (count_inputs("p9_first_block") > 0 & !asset_type_NA.checked ) {
+      asset_wrapper.style.display="flex"}
+    if (count_inputs("p8_first_block") <= 0 | asset_type_NA.checked ) {
+      asset_wrapper.style.display="none"}
+    if (count_inputs("asset_wrapper") > 0) {
+      submit_button.style.visibility="visible"}
+    if (count_inputs("asset_wrapper") <= 0) {
+      submit_button.style.visibility="hidden"} 
+    UpdatePGHeight(page_number)
 	} 
+	
 
 } 
