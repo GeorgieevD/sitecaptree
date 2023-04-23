@@ -251,6 +251,7 @@ function QuestionCheck(page_number) {
 	}
 	
 	if (page_number == 9){
+		submit_button.style.visibility="hidden"
 		fake_next_button.style.visibility="hidden"
     if (count_inputs("p9_first_block") > 0 & !asset_type_NA.checked ) {
       asset_wrapper.style.display="flex"}
