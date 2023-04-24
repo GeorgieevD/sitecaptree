@@ -200,7 +200,7 @@ function QuestionCheck(page_number) {
     if (count_inputs("EBITDA_wrapper_2") <= 0 && prof_yes_button.checked) {
       next_button.style.visibility="hidden"}
 	}   
-  
+	}
 	if (page_number == 7){
   	fake_next_button.style.visibility="visible"
     if (cf_positive.checked) {
