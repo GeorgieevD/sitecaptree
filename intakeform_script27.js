@@ -102,6 +102,7 @@ function QuestionCheck(page_number) {
       TicketCurrencyMasks(ticket_currency)
       next_button.style.visibility="visible"
       }
+	UpdatePGHeight(page_number)	
   }    
 	if (page_number == 1){
     prev_button.style.visibility="visible"
