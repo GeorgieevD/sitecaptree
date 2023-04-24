@@ -101,7 +101,7 @@ const productData = {
     ranking: "senior",
     ranking_tooltip: ""		  	  	  	  	  
   },
-    "Speciality Financing": {
+    "Specialty Financing": {
     price_range: "Variable",
     duration_range: "Variable",
     description: "Our specialty lenders indicated that they want to lend to companies like yours. Select this product if you want to explore a bespoke solution with our funding experts",
