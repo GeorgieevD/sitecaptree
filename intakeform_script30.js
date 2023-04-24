@@ -190,7 +190,7 @@ function QuestionCheck(page_number) {
   	if (prof_yes_button.checked) {
       EBITDA_wrapper_2.style.display="flex"
       }
-  	else {EBITDA_wrapper_2.style.display="none"
+  	else {EBITDA_wrapper_2.style.display="none"}
     if (count_inputs("EBITDA_wrapper_1") > 0 && prof_yes_button.checked == false) {
       next_button.style.visibility="visible"}
     if (count_inputs("EBITDA_wrapper_1") <= 0) {
@@ -198,8 +198,7 @@ function QuestionCheck(page_number) {
     if (count_inputs("EBITDA_wrapper_2") > 0) {
       next_button.style.visibility="visible"}
     if (count_inputs("EBITDA_wrapper_2") <= 0 && prof_yes_button.checked) {
-      next_button.style.visibility="hidden"}
-	}   
+      next_button.style.visibility="hidden"}   
 	}
 	if (page_number == 7){
   	fake_next_button.style.visibility="visible"
