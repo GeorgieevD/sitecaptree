@@ -343,17 +343,17 @@ function createCopiesFromDict(inputDict) {
         quantum_tooltip_text.className ="tooltiptext"
       } else if (oldId === "tooltip_duration") {
 				var quantum_tooltip_text = document.createElement('span')
-				quantum_tooltip_text.innerHTML = "The time between closing and maturity of the loan" 
+				quantum_tooltip_text.innerHTML = "The period between the first drawdown of the loan and repayment of the loan in full" 
         element.appendChild(quantum_tooltip_text);
         quantum_tooltip_text.className ="tooltiptext"    
       } else if (oldId === "tooltip_dilution") {
 				var quantum_tooltip_text = document.createElement('span')
-				quantum_tooltip_text.innerHTML = "Some loan products include a return component that is dilutive to the equity, such as a warrant or call option" 
+				quantum_tooltip_text.innerHTML = "Some loans include a return component that dilutes equity, such as warrants or call options" 
         element.appendChild(quantum_tooltip_text);
         quantum_tooltip_text.className ="tooltiptext"        
       } else if (oldId === "tooltip_covenants") {
 				var quantum_tooltip_text = document.createElement('span')
-				quantum_tooltip_text.innerHTML = "Covenants are restrictive rules that prohibit the issuer from taking certain financial actions until maturity or repayment to protect the lender" 
+				quantum_tooltip_text.innerHTML = "Financial covenants require the borrower to maintain specified credit ratios, such as a minimum cash balance or leverage ratio" 
         element.appendChild(quantum_tooltip_text);
         quantum_tooltip_text.className ="tooltiptext"        
         
