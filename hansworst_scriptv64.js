@@ -385,8 +385,9 @@ function findLowestRateRow(inputDict, order_setting) {
 
   for (var key in inputDict) {
     var row = inputDict[key];
+    console.log(row)	  
     var price = parseFloat(row.price_range.split("-")[0]);
-
+	
     if (lowestRateKey === null || price < parseFloat(inputDict[lowestRateKey].price_range.split("-")[0])) {
       lowestRateKey = key;
     }
