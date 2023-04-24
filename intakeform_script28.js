@@ -102,7 +102,6 @@ function QuestionCheck(page_number) {
       TicketCurrencyMasks(ticket_currency)
       next_button.style.visibility="visible"
       }
-	UpdatePGHeight(page_number)	
   }    
 	if (page_number == 1){
     prev_button.style.visibility="visible"
@@ -166,13 +165,12 @@ function QuestionCheck(page_number) {
     if (Recurring_20.checked || Recurring_NA.checked) {
     	next_button.style.visibility="visible"
       churn_wrapper.style.display="none"
-      UpdatePGHeight(5)
     }
    
     if (Recurring_20_50.checked || Recurring_50_80.checked || Recurring_80.checked ) {
     	next_button.style.visibility="hidden"
       churn_wrapper.style.display="flex"
-      UpdatePGHeight(5)
+  
     }
     if (count_inputs("churn_wrapper") > 0) {
       next_button.style.visibility="visible"}    
@@ -182,19 +180,17 @@ function QuestionCheck(page_number) {
       rev_recurring.style.visibility="hidden"
       next_button.style.visibility="hidden"
       churn_wrapper.style.display="none"
-      UpdatePGHeight(5)
       }
 	}
   
 	if (page_number == 6){
     if (count_inputs("p6_first_block") > 0) {
       EBITDA_wrapper_1.style.display="flex"
-      UpdatePGHeight(6)}
+      }
   	if (prof_yes_button.checked) {
       EBITDA_wrapper_2.style.display="flex"
-      UpdatePGHeight(6)}
+      }
   	else {EBITDA_wrapper_2.style.display="none"
-   		UpdatePGHeight(6)}
     if (count_inputs("EBITDA_wrapper_1") > 0 && prof_yes_button.checked == false) {
       next_button.style.visibility="visible"}
     if (count_inputs("EBITDA_wrapper_1") <= 0) {
@@ -206,12 +202,10 @@ function QuestionCheck(page_number) {
 	}   
   
 	if (page_number == 7){
-    UpdatePGHeight(7)
   	fake_next_button.style.visibility="visible"
     if (cf_positive.checked) {
       cashflow_wrapper.style.display="flex" 
       runway_wrapper.style.display="none" 
-      UpdatePGHeight(7)
       if (count_inputs("cashflow_wrapper") > 0) {
         next_button.style.visibility="visible"}
       if (count_inputs("cashflow_wrapper") <= 0) {
@@ -220,7 +214,6 @@ function QuestionCheck(page_number) {
     if (cf_negative.checked) {
       cashflow_wrapper.style.display="none" 
       runway_wrapper.style.display="flex" 
-      UpdatePGHeight(7)
       if (count_inputs("runway_wrapper") > 0) {
         next_button.style.visibility="visible"}
       if (count_inputs("runway_wrapper") <= 0) {
@@ -230,7 +223,6 @@ function QuestionCheck(page_number) {
       cashflow_wrapper.style.display="none"
       runway_wrapper.style.display="none"
       next_button.style.visibility="visible"
-      UpdatePGHeight(7)      
       }
 	} 
   
@@ -248,7 +240,6 @@ function QuestionCheck(page_number) {
       next_button.style.visibility="visible"}
     if (count_inputs("cap_wrapper") <= 0) {
       next_button.style.visibility="hidden"} 
-    UpdatePGHeight(page_number)
 	}
 	
 	if (page_number == 9){
@@ -262,8 +253,7 @@ function QuestionCheck(page_number) {
       console.log("check")}
     if ((count_inputs("asset_wrapper") <= 0 & !asset_type_NA.checked) | count_inputs("p9_first_block") <= 0) {
       submit_button.style.display="none"} 
-    UpdatePGHeight(page_number)
 	} 
 	
-
+UpdatePGHeight(page_number)
 } 
