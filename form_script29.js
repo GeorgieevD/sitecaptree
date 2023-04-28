@@ -25,8 +25,8 @@ function UpdatePGHeight(page_number) {
 function TicketCurrencyMasks(currency) {
    $("#ticket_size").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});
    $("#asset_size").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency,  allowMinus: false, "clearMaskOnLostFocus": true});   
-   document.getElementById("raise_sub").innerHTML = "Please enter amount in " + currency + "mn";	
-   document.getElementById("asset_sub").innerHTML = "Please enter amount in " + currency + "mn";
+   document.getElementById("raise_sub").innerHTML = "Please enter amount in " + currency + "million";	
+   document.getElementById("asset_sub").innerHTML = "Please enter amount in " + currency + "million";
 }
 
 function ReportingCurrencyMasks(currency) {
@@ -36,14 +36,15 @@ function ReportingCurrencyMasks(currency) {
    $("#equity_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
    $("#cash_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
    $("#gross_debt_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
-   document.getElementById("revenue_sub").innerHTML = "LTM in " + currency + "mn, estimate is ok";
-   document.getElementById("EBITDA_sub").innerHTML = "LTM in " + currency + "mn, estimate is ok";
-   document.getElementById("FCF_sub").innerHTML = "LTM in " + currency + "mn, estimate is ok";
-   document.getElementById("equity_sub").innerHTML = "Please enter in " + currency + "mn";
-   document.getElementById("cash_sub").innerHTML = "Cash in " + currency + "mn";
-   document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + "mn";
-   document.getElementById("SME_sub").innerHTML = "SMEs (<" + currency + "25mn rev.)";
+   document.getElementById("revenue_sub").innerHTML = "LTM in " + currency + "million, estimate is ok";
+   document.getElementById("EBITDA_sub").innerHTML = "LTM in " + currency + "million, estimate is ok";
+   document.getElementById("FCF_sub").innerHTML = "LTM in " + currency + "million, estimate is ok";
+   document.getElementById("equity_sub").innerHTML = "Please enter in " + currency + "million";
+   document.getElementById("cash_sub").innerHTML = "Cash in " + currency + "million";
+   document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + "million";
+   document.getElementById("SME_sub").innerHTML = "SME (<" + currency + "25mn rev.)";
    document.getElementById("enterprise_sub").innerHTML = "Enterprise (>" + currency + "25mn rev.)";
+   document.getElementById("asset_sub").innerHTML = "Please enter in " + currency + "million";	
 }
 
 const prev_button = document.getElementById("previous_button")
