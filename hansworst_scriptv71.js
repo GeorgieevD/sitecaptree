@@ -210,7 +210,7 @@ function calculateQuantumRange(product, company) {
       break;
     case "Revenue Based Financing":
       maxQ = 0.5 * LTM_revenue;
-      let quantumRange = [maxQ, maxQ];
+      quantumRange = [maxQ, maxQ];
       break;
     case "Unitranche":
       minQ = 3 * LTM_EBITDA;
