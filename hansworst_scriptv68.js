@@ -1,4 +1,6 @@
+
 var quantum_decimals = 0
+var range_setting = false
 
 // Currency conversion
 function currencyConversion(amount, fromCurrency, toCurrency, conversionRates) {
@@ -10,10 +12,46 @@ function currencyConversion(amount, fromCurrency, toCurrency, conversionRates) {
   return amount * conversionRate;
 }
 
+
+//function to get min or max from an array 
+function getMin(arr){
+  let minimum = Math.min(...arr);
+  let result = minimum; 
+  return result;
+};
+
+function getMax(arr){
+  let maximum = Math.max(...arr);
+  let result = maximum; 
+  return result;
+};
+
+
+//This function is used to convert the min/max range into a string and also validates the inputs 
+
+function rangeConverter(quantum_range, range, decimals) {
+  // Check if any item in quantum_range is null or NaN
+  const isValidRange = quantum_range.every((item) => item !== null && !isNaN(item));
+
+  if (!isValidRange) {
+    const validValue = quantum_range.find((item) => item !== null && !isNaN(item));
+    if (validValue !== undefined) {
+      return validValue.toFixed(decimals).toString();
+    } else {
+      return 'TBD';
+    }
+  }
+
+  const output = range ? `${quantum_range[0].toFixed(decimals)}-${quantum_range[1].toFixed(decimals)}` : quantum_range[1].toFixed(decimals).toString();
+  return output;
+}
+
+
+
 /// Static product data. To be replaced by live database
 const productData = {
   "Venture Debt": {
-    price_range: "10 - 15",
+    price_range: [10 - 15],
     duration_range: "2 - 4",
     description: "Debt financing for early-stage and scale-up companies",
     dilution: "Low",
@@ -24,7 +62,7 @@ const productData = {
     ranking_tooltip: ""		  
   },
   "Growth Debt": {
-    price_range: "8 - 12",
+    price_range: [8 - 12],
     duration_range: "3 - 6",
     description: "Debt financing for high-growth companies",
     dilution: "Low",
@@ -35,7 +73,7 @@ const productData = {
     ranking_tooltip: ""		  	  
   },
   "Unitranche": {
-    price_range: "6 - 9",
+    price_range: [6 - 9],
     duration_range: "5 - 7",
     description: "Single-tranche debt financing combining senior and subordinated debt",
     dilution: "None",
@@ -46,7 +84,7 @@ const productData = {
     ranking_tooltip: ""		  	  
   },
   "Revenue Based Financing": {
-    price_range: "6 - 12",
+    price_range: [6 - 12],
     duration_range: "0.5 - 2",
     description: "Financing based on a percentage of a company's monthly revenue",
     dilution: "None",
@@ -57,7 +95,7 @@ const productData = {
     ranking_tooltip: "Can be raised as stand-alone facility or added on top of existing or newly raised senior debt"		  	  
   },
   "Mezzanine": {
-    price_range: "10 - 20",
+    price_range: [10 - 20],
     duration_range: "5 - 8",
     description: "Subordinated debt with sometimes equity-like features",
     dilution: "Possible",
@@ -68,7 +106,7 @@ const productData = {
     ranking_tooltip: "Typically raised on top of a new bank loan or existing debt"		  	  	  
   },
   "Bank Loan": {
-    price_range: "4 - 8",
+    price_range: [4 - 8],
     duration_range: "1 - 5",
     description: "Traditional bank loan for businesses",
     dilution: "None",
@@ -79,8 +117,8 @@ const productData = {
     ranking_tooltip: ""		  	  	  	  
   },
   "Asset Backed Loan": {
-    quantum_range: "70 - 100",
-    price_range: "5 - 12",
+    quantum_range: [70 - 100],
+    price_range: [5 - 12],
     duration_range: "2 - 5",
     description: "Debt that is secured by your debtor book or fixed assets",
     dilution: "None",
@@ -91,7 +129,7 @@ const productData = {
     ranking_tooltip: ""		  	  	  	  	  
   },
   "Growth Bank Loan": {
-    price_range: "3 - 6",
+    price_range: [3 - 6],
     duration_range: "1 - 3",
     description: "Bank loan tailored for high-growth start-ups and scale-ups",
     dilution: "None",
@@ -115,33 +153,32 @@ const productData = {
 };
 
 // Filtering Algorithm
-function filterLendingProducts(company, conversionRates, outputCurrency, productData) {
+function filterLendingProducts(company, productData) {
   const {
     LTM_revenue,
     LTM_EBITDA,
     ticket_size,
     growth,
     company_type,
-    UoF,
     reporting_currency,
     ticket_currency,
     equity_raised,
-    asset_size	
+    asset_size,
+    ABL_RE,
+    ABL_inventory,
+    ABL_AR,
+    ABL_equipment	      		 
   } = company;
 
-  const LTM_revenue_converted = currencyConversion(LTM_revenue, reporting_currency, outputCurrency, conversionRates);
-  const LTM_EBITDA_converted = currencyConversion(LTM_EBITDA, reporting_currency, outputCurrency, conversionRates);
-  const ticket_size_converted = currencyConversion(ticket_size, ticket_currency, outputCurrency, conversionRates);
-
   const products = {
-    "Venture Debt": ticket_size_converted >= 1. && (company_type === "start_up" || company_type === "scale_up"),
-    "Growth Debt": ticket_size_converted >= 15. && (company_type === "start_up" || company_type === "scale_up"),
-    "Unitranche": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 1.,
-    "Revenue Based Financing": (company_type === "start_up" || company_type === "scale_up") && LTM_revenue_converted >= 0.1,
-    "Mezzanine": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.25,
-    "Bank Loan": ticket_size_converted >= 1. && LTM_EBITDA_converted >= 0.33,
-    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue_converted >= 10,
-    "Asset Backed Loan": Array.isArray(UoF) ? (UoF.includes("asset_financing") && asset_size >= 1) : (UoF === "asset_financing" && asset_size >= 1),
+    "Venture Debt": ticket_size >= 1. && (company_type === "start_up" || company_type === "scale_up"),
+    "Growth Debt": ticket_size >= 15. && (company_type === "start_up" || company_type === "scale_up"),
+    "Unitranche": ticket_size >= 1. && LTM_EBITDA >= 1.,
+    "Revenue Based Financing": (company_type === "start_up" || company_type === "scale_up") && LTM_revenue >= 0.1,
+    "Mezzanine": ticket_size >= 1. && LTM_EBITDA >= 0.25,
+    "Bank Loan": ticket_size >= 1. && LTM_EBITDA >= 0.33,
+    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenued >= 10,
+    "Asset Backed Loan": asset_size >= 1.),
     "Specialty Financing": true
   };
 
@@ -149,10 +186,8 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
 
   for (const product in products) {
     if (products[product]) {
-      const qrOutput = calculateQuantumRange(product, company, conversionRates, outputCurrency);
-      const quantum_range = qrOutput[0]
-      const maxQ =  qrOutput[1]
-      const quantum_met = (maxQ>=ticket_size)    
+      const quantum_range = calculateQuantumRange(product, company);
+      const quantum_met = (quantum_range[1]>=ticket_size)    
       filteredProducts[product] = { ...productData[product], quantum_range, quantum_met };
     }
   }
@@ -161,90 +196,63 @@ function filterLendingProducts(company, conversionRates, outputCurrency, product
 }
 
 /// Quantum range calculator
-function calculateQuantumRange(product, company, conversionRates, ticketCurrency) {
+function calculateQuantumRange(product, company) {
   const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size } = company;
-
+  
   let quantumRange = "";
-  let maxQ = 0;
 
   switch (product) {
     case "Venture Debt":
     case "Growth Debt":
-      const equityRaisedConverted = equity_raised ? currencyConversion(equity_raised, reporting_currency, ticketCurrency, conversionRates) : null;
-      const revenueConverted = LTM_revenue ? currencyConversion(LTM_revenue, reporting_currency, ticketCurrency, conversionRates) : null;
-
-      if (equityRaisedConverted !== null && revenueConverted !== null) {
-        const minQuantum = Math.min(0.4 * equityRaisedConverted, revenueConverted);
-        const maxQuantum = Math.max(0.4 * equityRaisedConverted, revenueConverted);
-	maxQ = maxQuantum
-        if (maxQuantum - minQuantum > 1) {
-          quantumRange = `${minQuantum.toFixed(quantum_decimals)} - ${maxQuantum.toFixed(quantum_decimals)}`;
-        } else {
-          quantumRange = `${minQuantum.toFixed(quantum_decimals)}`;
-        }
-      } else if (equityRaisedConverted !== null) {
-        quantumRange = `${equityRaisedConverted.toFixed(quantum_decimals)}`;
-      } else if (revenueConverted !== null) {
-        quantumRange = `${revenueConverted.toFixed(quantum_decimals)}`;
-      } else {
-        quantumRange = "TBD"; // You can set this to any placeholder value if both values are null
-      }
+      const minQ = Math.min(0.4 * equity_raised, LTM_revenue);
+      const maxQ = Math.max(0.4 * equity_raised, LTM_revenue);
+      let quantumRange = [minQ, maxQ]
       break;
     case "Revenue Based Financing":
-      const quantum = 0.5 * LTM_revenue;
-      const quantumConverted = currencyConversion(quantum, reporting_currency, ticketCurrency, conversionRates);
-      maxQ = quantumConverted
-      quantumRange = `${quantumConverted.toFixed(quantum_decimals)}`;
+      const maxQ = 0.5 * LTM_revenue;
+      let quantumRange = [maxQ, maxQ];
       break;
-      
     case "Unitranche":
-      const minEBITDA = 3 * LTM_EBITDA;
-      const maxEBITDA = 5 * LTM_EBITDA;
-      const minEBITDAConverted = currencyConversion(minEBITDA, reporting_currency, ticketCurrency, conversionRates);
-      const maxEBITDAConverted = currencyConversion(maxEBITDA, reporting_currency, ticketCurrency, conversionRates);
-      maxQ = maxEBITDAConverted
-      quantumRange = `${minEBITDAConverted.toFixed(quantum_decimals)} - ${maxEBITDAConverted.toFixed(quantum_decimals)}`;
+      const minQ = 3 * LTM_EBITDA;
+      const maxQ = 5 * LTM_EBITDA;
+      quantumRange = [minQ, maxQ];
       break;
     case "Mezzanine":
-      const minMezzanine = 1 * LTM_EBITDA;
-      const maxMezzanine = 2 * LTM_EBITDA;
-      const minMezzanineConverted = currencyConversion(minMezzanine, reporting_currency, ticketCurrency, conversionRates);
-      const maxMezzanineConverted = currencyConversion(maxMezzanine, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minMezzanineConverted.toFixed(quantum_decimals)} - ${maxMezzanineConverted.toFixed(quantum_decimals)}`;
-      maxQ = maxMezzanineConverted
+      const minQ = 1 * LTM_EBITDA;
+      const maxQ = 2 * LTM_EBITDA;
+      quantumRange = [minQ, maxQ];
       break;
     case "Bank Loan":
-      const minBankLoan = 1 * LTM_EBITDA;
-      const maxBankLoan = 3 * LTM_EBITDA;
-      const minBankLoanConverted = currencyConversion(minBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      const maxBankLoanConverted = currencyConversion(maxBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${minBankLoanConverted.toFixed(quantum_decimals)} - ${maxBankLoanConverted.toFixed(quantum_decimals)}`;
-      maxQ = maxBankLoanConverted
+      const minQ = 1 * LTM_EBITDA;
+      const maxQ = 3 * LTM_EBITDA;
+      quantumRange = [minQ, maxQ];
       break;
     case "Growth Bank Loan":
-      const revenueGrowthBankLoan = LTM_revenue;
-      const revenueGrowthBankLoanConverted = currencyConversion(revenueGrowthBankLoan, reporting_currency, ticketCurrency, conversionRates);
-      quantumRange = `${revenueGrowthBankLoanConverted.toFixed(quantum_decimals)}`;
-      maxQ = revenueGrowthBankLoanConverted      	  
+      const maxQ = LTM_revenue;
+      quantumRange = [maxQ, maxQ];
       break;
      case "Asset Backed Loan":
-      const assetSize = asset_size;
-      const minLTV = 0.7 * assetSize;
-      const maxLTV = 0.9 * assetSize;
-      maxQ = maxLTV	  
-      if (isNaN(assetSize)){
-        quantumRange = "TBD"
-      } else if (minLTV.toFixed(quantum_decimals) === maxLTV.toFixed(quantum_decimals)) {
-	      quantumRange = `${maxLTV.toFixed(quantum_decimals)}`
-      	} else { 
-        quantumRange = `${minLTV.toFixed(quantum_decimals)} - ${maxLTV.toFixed(quantum_decimals)}`;
-      };
+      const LTVlist = [];
+      if (ABL_RE == 'on'){LTVlist.push(0.75)};
+      if (ABL_AR == 'on'){LTVlist.push(0.9)};
+      if (ABL_equipment == 'on'){LTVlist.push(0.85)};
+      if (ABL_inventory == 'on'){LTVlist.push(0.75)};
+      if LTVlist.length >=2{
+       let maxLTV = getMax(LTVlist)
+       let minLTV = getMin(LTVlist)
+       } else {
+	  let maxLTV = LTVlist[0]
+	  let minLTV = maxLTV
+	  };
+      let minQ = minLTV * asset_size;
+      let maxQ = maxLTV * asset_size;
+      quantumRange = [maxQ, maxQ];  
       break;     
     default:
       break;
   }
 
-  return [quantumRange, maxQ];
+  return quantumRange;
 }
 
 function convertCurrencyToSymbol(currency) {
@@ -320,9 +328,9 @@ function createCopiesFromDict(inputDict) {
 	        if (inputDict[productName].ranking == 'junior'){
 	      		element.style.display = "flex"}
       } else if (oldId === "product_quantum") {
-        element.innerHTML = inputDict[productName].quantum_range;	      
+        element.innerHTML = rangeConverter(inputDict[productName].quantum_range, range_setting, quantum_decimals);	      
       } else if (oldId === "product_apr") {
-        element.innerHTML = inputDict[productName].price_range;
+        element.innerHTML = rangeConverter(inputDict[productName].price_range, true, 0)
       } else if (oldId === "product_maturity") {
         element.innerHTML = inputDict[productName].duration_range;
       } else if (oldId === "product_description") {
@@ -385,10 +393,9 @@ function findLowestRateRow(inputDict, order_setting) {
 
   for (var key in inputDict) {
     var row = inputDict[key];
-    console.log(row)	  
-    var price = parseFloat(row.price_range.split("-")[0]);
-	
-    if (lowestRateKey === null || price < parseFloat(inputDict[lowestRateKey].price_range.split("-")[0])) {
+    var price = row.price_range[0]; // Get the minimum value of the price range
+
+    if (lowestRateKey === null || price < inputDict[lowestRateKey].price_range[0]) {
       lowestRateKey = key;
     }
   }
@@ -396,47 +403,41 @@ function findLowestRateRow(inputDict, order_setting) {
   return lowestRateKey;
 }
 
-function orderDict(inputDict, order_setting, direction) {
+function orderDict(inputDict, order_setting) {
   var orderedKeys = Object.keys(inputDict);
 
-if (order_setting === "quantum") {
-  orderedKeys.sort(function(a, b) {
-    var quantumA = inputDict[a].quantum_range.split("-")[1];
-    if (quantumA === undefined) {
-      // quantum_range contains a single number
-      quantumA = inputDict[a].quantum_range;
-    }
-    var quantumB = inputDict[b].quantum_range.split("-")[1];
-    if (quantumB === undefined) {
-      // quantum_range contains a single number
-      quantumB = inputDict[b].quantum_range;
-    }
-    if (direction === "ascending") {
-      return quantumA - quantumB;
-    } else {
-      return quantumB - quantumA;
-    }
-  });
+  if (order_setting === "quantum") {
+    orderedKeys.sort(function(a, b) {
+      var quantumA = inputDict[a].quantum_range[1];
+      var quantumB = inputDict[b].quantum_range[1];
+      return quantumB - quantumA; // Descending order based on the top of the range
+    });
+  } else if (order_setting === "price") {
+    orderedKeys.sort(function(a, b) {
+      var priceA = inputDict[a].price_range[0];
+      var priceB = inputDict[b].price_range[0];
+      return priceA - priceB; // Ascending order based on the lowest point of the range
+    });
   } else {
-    // default to alphabetical order
     orderedKeys.sort();
   }
 
-// Make sure "Specialty Financing" is always last
-var SpecialtyFinancingIndex = orderedKeys.indexOf("Specialty Financing");
-if (SpecialtyFinancingIndex !== -1) {
-  orderedKeys.splice(SpecialtyFinancingIndex, 1);
-  orderedKeys.push("Specialty Financing");
-}	
-	
-  var lowestRateKey = findLowestRateRow(inputDict, order_setting);
   var orderedDict = {};
+  var specialtyFinancingRow = null;
 
   for (var i = 0; i < orderedKeys.length; i++) {
     var key = orderedKeys[i];
     var row = inputDict[key];
-    row.lowest_rate = key === lowestRateKey;
-    orderedDict[key] = row;
+
+    if (key === "Specialty Financing") {
+      specialtyFinancingRow = row;
+    } else {
+      orderedDict[key] = row;
+    }
+  }
+
+  if (specialtyFinancingRow !== null) {
+    orderedDict["Specialty Financing"] = specialtyFinancingRow;
   }
 
   return orderedDict;
