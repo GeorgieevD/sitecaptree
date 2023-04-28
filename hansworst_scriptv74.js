@@ -200,12 +200,13 @@ function calculateQuantumRange(product, company) {
   const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size } = company;
   
   let quantumRange = "";
-
+  let minQ = 0
+  let maxQ = 0
   switch (product) {
     case "Venture Debt":
     case "Growth Debt":
-      const minQ = Math.min(0.4 * equity_raised, LTM_revenue);
-      const maxQ = Math.max(0.4 * equity_raised, LTM_revenue);
+      minQ = Math.min(0.4 * equity_raised, LTM_revenue);
+      maxQ = Math.max(0.4 * equity_raised, LTM_revenue);
       let quantumRange = [minQ, maxQ]
       break;
     case "Revenue Based Financing":
