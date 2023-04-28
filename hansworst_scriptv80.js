@@ -31,6 +31,7 @@ function getMax(arr){
 
 function rangeConverter(quantum_range, range, decimals) {
   // Check if any item in quantum_range is null, NaN, or undefined
+  console.log(quantum_range)
   const isValidRange = quantum_range.every((item) => item !== null && !isNaN(item) && item !== undefined);
 
   if (!isValidRange) {
