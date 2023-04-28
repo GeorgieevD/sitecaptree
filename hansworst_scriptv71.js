@@ -237,7 +237,7 @@ function calculateQuantumRange(product, company) {
       if (ABL_AR == 'on'){LTVlist.push(0.9)};
       if (ABL_equipment == 'on'){LTVlist.push(0.85)};
       if (ABL_inventory == 'on'){LTVlist.push(0.75)};
-      if LTVlist.length >=2{
+      if (LTVlist.length) >=2{
        let maxLTV = getMax(LTVlist)
        let minLTV = getMin(LTVlist)
        } else {
