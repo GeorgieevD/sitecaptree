@@ -46,7 +46,7 @@ function rangeConverter(quantum_range, range, decimals) {
   const maxQuantum = quantum_range[1];
 
   if (range && minQuantum === maxQuantum) {
-    return minQuantum.toFixed(decimals).toString();
+    return minQuantum !== undefined ? minQuantum.toFixed(decimals).toString() : 'TBD';
   }
 
   const output = range ? `${minQuantum.toFixed(decimals)}-${maxQuantum.toFixed(decimals)}` : maxQuantum.toFixed(decimals).toString();
