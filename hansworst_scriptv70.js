@@ -209,26 +209,26 @@ function calculateQuantumRange(product, company) {
       let quantumRange = [minQ, maxQ]
       break;
     case "Revenue Based Financing":
-      const maxQ = 0.5 * LTM_revenue;
+      maxQ = 0.5 * LTM_revenue;
       let quantumRange = [maxQ, maxQ];
       break;
     case "Unitranche":
-      const minQ = 3 * LTM_EBITDA;
-      const maxQ = 5 * LTM_EBITDA;
+      minQ = 3 * LTM_EBITDA;
+      maxQ = 5 * LTM_EBITDA;
       quantumRange = [minQ, maxQ];
       break;
     case "Mezzanine":
-      const minQ = 1 * LTM_EBITDA;
-      const maxQ = 2 * LTM_EBITDA;
+      minQ = 1 * LTM_EBITDA;
+      maxQ = 2 * LTM_EBITDA;
       quantumRange = [minQ, maxQ];
       break;
     case "Bank Loan":
-      const minQ = 1 * LTM_EBITDA;
-      const maxQ = 3 * LTM_EBITDA;
+      minQ = 1 * LTM_EBITDA;
+      maxQ = 3 * LTM_EBITDA;
       quantumRange = [minQ, maxQ];
       break;
     case "Growth Bank Loan":
-      const maxQ = LTM_revenue;
+      maxQ = LTM_revenue;
       quantumRange = [maxQ, maxQ];
       break;
      case "Asset Backed Loan":
@@ -244,8 +244,8 @@ function calculateQuantumRange(product, company) {
 	  let maxLTV = LTVlist[0]
 	  let minLTV = maxLTV
 	  };
-      let minQ = minLTV * asset_size;
-      let maxQ = maxLTV * asset_size;
+      minQ = minLTV * asset_size;
+      maxQ = maxLTV * asset_size;
       quantumRange = [maxQ, maxQ];  
       break;     
     default:
