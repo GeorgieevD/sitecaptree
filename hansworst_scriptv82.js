@@ -30,8 +30,12 @@ function getMax(arr){
 //This function is used to convert the min/max range into a string and also validates the inputs 
 
 function rangeConverter(quantum_range, range, decimals) {
+  // Check if quantum_range is not a valid range
+  if (!Array.isArray(quantum_range) || quantum_range.length !== 2) {
+    return null;
+  }
+
   // Check if any item in quantum_range is null, NaN, or undefined
-  console.log(quantum_range)
   const isValidRange = quantum_range.every((item) => item !== null && !isNaN(item) && item !== undefined);
 
   if (!isValidRange) {
@@ -53,7 +57,6 @@ function rangeConverter(quantum_range, range, decimals) {
   const output = range ? `${minQuantum.toFixed(decimals)}-${maxQuantum.toFixed(decimals)}` : maxQuantum.toFixed(decimals).toString();
   return output;
 }
-
 
 /// Static product data. To be replaced by live database
 const productData = {
