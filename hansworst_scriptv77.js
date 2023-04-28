@@ -234,20 +234,22 @@ function calculateQuantumRange(product, company) {
       break;
      case "Asset Backed Loan":
       const LTVlist = [];
+      let minLTV = 0
+      let maxLTV = 0
       if (ABL_RE == 'on'){LTVlist.push(0.75)};
       if (ABL_AR == 'on'){LTVlist.push(0.9)};
       if (ABL_equipment == 'on'){LTVlist.push(0.85)};
       if (ABL_inventory == 'on'){LTVlist.push(0.75)};
       if (LTVlist.length >=2){
-       let maxLTV = getMax(LTVlist)
-       let minLTV = getMin(LTVlist)
+       maxLTV = getMax(LTVlist)
+       minLTV = getMin(LTVlist)
        } else {
-	  let maxLTV = LTVlist[0]
-	  let minLTV = maxLTV
+	  maxLTV = LTVlist[0]
+	  minLTV = maxLTV
 	  };
       minQ = minLTV * asset_size;
       maxQ = maxLTV * asset_size;
-      quantumRange = [maxQ, maxQ];  
+      quantumRange = [minQ, maxQ];  
       break;     
     default:
       break;
