@@ -58,7 +58,7 @@ function rangeConverter(quantum_range, range, decimals) {
 /// Static product data. To be replaced by live database
 const productData = {
   "Venture Debt": {
-    price_range: [10 - 15],
+    price_range: [10, 15],
     duration_range: "2 - 4",
     description: "Debt financing for early-stage and scale-up companies",
     dilution: "Low",
@@ -69,7 +69,7 @@ const productData = {
     ranking_tooltip: ""		  
   },
   "Growth Debt": {
-    price_range: [8 - 12],
+    price_range: [8, 12],
     duration_range: "3 - 6",
     description: "Debt financing for high-growth companies",
     dilution: "Low",
@@ -80,7 +80,7 @@ const productData = {
     ranking_tooltip: ""		  	  
   },
   "Unitranche": {
-    price_range: [6 - 9],
+    price_range: [6, 9],
     duration_range: "5 - 7",
     description: "Single-tranche debt financing combining senior and subordinated debt",
     dilution: "None",
@@ -91,7 +91,7 @@ const productData = {
     ranking_tooltip: ""		  	  
   },
   "Revenue Based Financing": {
-    price_range: [6 - 12],
+    price_range: [6, 12],
     duration_range: "0.5 - 2",
     description: "Financing based on a percentage of a company's monthly revenue",
     dilution: "None",
@@ -102,7 +102,7 @@ const productData = {
     ranking_tooltip: "Can be raised as stand-alone facility or added on top of existing or newly raised senior debt"		  	  
   },
   "Mezzanine": {
-    price_range: [10 - 20],
+    price_range: [10, 20],
     duration_range: "5 - 8",
     description: "Subordinated debt with sometimes equity-like features",
     dilution: "Possible",
@@ -113,7 +113,7 @@ const productData = {
     ranking_tooltip: "Typically raised on top of a new bank loan or existing debt"		  	  	  
   },
   "Bank Loan": {
-    price_range: [4 - 8],
+    price_range: [4, 8],
     duration_range: "1 - 5",
     description: "Traditional bank loan for businesses",
     dilution: "None",
@@ -124,8 +124,8 @@ const productData = {
     ranking_tooltip: ""		  	  	  	  
   },
   "Asset Backed Loan": {
-    quantum_range: [70 - 100],
-    price_range: [5 - 12],
+    quantum_range: [70, 100],
+    price_range: [5, 12],
     duration_range: "2 - 5",
     description: "Debt that is secured by your debtor book or fixed assets",
     dilution: "None",
@@ -136,7 +136,7 @@ const productData = {
     ranking_tooltip: ""		  	  	  	  	  
   },
   "Growth Bank Loan": {
-    price_range: [3 - 6],
+    price_range: [3, 6],
     duration_range: "1 - 3",
     description: "Bank loan tailored for high-growth start-ups and scale-ups",
     dilution: "None",
