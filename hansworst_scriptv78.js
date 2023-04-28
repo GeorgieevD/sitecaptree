@@ -30,11 +30,11 @@ function getMax(arr){
 //This function is used to convert the min/max range into a string and also validates the inputs 
 
 function rangeConverter(quantum_range, range, decimals) {
-  // Check if any item in quantum_range is null or NaN
-  const isValidRange = quantum_range.every((item) => item !== null && !isNaN(item));
+  // Check if any item in quantum_range is null, NaN, or undefined
+  const isValidRange = quantum_range.every((item) => item !== null && !isNaN(item) && item !== undefined);
 
   if (!isValidRange) {
-    const validValue = quantum_range.find((item) => item !== null && !isNaN(item));
+    const validValue = quantum_range.find((item) => item !== null && !isNaN(item) && item !== undefined);
     if (validValue !== undefined) {
       return validValue.toFixed(decimals).toString();
     } else {
@@ -42,10 +42,16 @@ function rangeConverter(quantum_range, range, decimals) {
     }
   }
 
-  const output = range ? `${quantum_range[0].toFixed(decimals)}-${quantum_range[1].toFixed(decimals)}` : quantum_range[1].toFixed(decimals).toString();
+  const minQuantum = quantum_range[0];
+  const maxQuantum = quantum_range[1];
+
+  if (range && minQuantum === maxQuantum) {
+    return minQuantum.toFixed(decimals).toString();
+  }
+
+  const output = range ? `${minQuantum.toFixed(decimals)}-${maxQuantum.toFixed(decimals)}` : maxQuantum.toFixed(decimals).toString();
   return output;
 }
-
 
 
 /// Static product data. To be replaced by live database
