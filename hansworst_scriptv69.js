@@ -178,7 +178,7 @@ function filterLendingProducts(company, productData) {
     "Mezzanine": ticket_size >= 1. && LTM_EBITDA >= 0.25,
     "Bank Loan": ticket_size >= 1. && LTM_EBITDA >= 0.33,
     "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenued >= 10,
-    "Asset Backed Loan": asset_size >= 1.),
+    "Asset Backed Loan": asset_size >= 1.,
     "Specialty Financing": true
   };
 
