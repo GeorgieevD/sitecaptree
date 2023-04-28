@@ -197,7 +197,7 @@ function filterLendingProducts(company, productData) {
 
 /// Quantum range calculator
 function calculateQuantumRange(product, company) {
-  const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size } = company;
+  const { equity_raised, LTM_revenue, LTM_EBITDA, reporting_currency, asset_size, ABL_RE, ABL_AR, ABL_inventory, ABL_equipment } = company;
   
   let quantumRange = "";
   let minQ = 0
