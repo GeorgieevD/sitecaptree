@@ -45,6 +45,7 @@ function ReportingCurrencyMasks(currency) {
    document.getElementById("SME_sub").innerHTML = "SME (<" + currency + "25mn rev.)";
    document.getElementById("enterprise_sub").innerHTML = "Enterprise (>" + currency + "25mn rev.)";
    document.getElementById("asset_sub").innerHTML = "Please enter in " + currency + " million";	
+   document.getElementById("asset_title").innerHTML = currency + " 1 million?";		
 }
 
 const prev_button = document.getElementById("previous_button")
