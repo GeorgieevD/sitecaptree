@@ -28,6 +28,11 @@ const Reporting_USD = document.getElementById("Reporting_USD")
 Reporting_currency_wrapper.style.visibility="hidden"
 
 /* page 4 elements */
+
+const industry_other = document.getElementById("industry_other")
+const industry_other_wrapper = document.getElementById("industry_other_wrapper")
+industry_other_wrapper.style.display="none" 
+
 const year_wrapper = document.getElementById("year_wrapper")
 const company_size_wrapper = document.getElementById("company_size_wrapper")
 const ct_other_button = document.getElementById("company_type_other")
@@ -156,11 +161,21 @@ function QuestionCheck(page_number) {
     ct_other_div.style.visibility="hidden"}   
 	} 
 	if (page_number == 4){
-    if (count_inputs("p4_first_block") > 0) {
+    if (count_inputs("p4_first_block") > 0 && industry_other.checked == false) {
       next_button.style.visibility="visible"}
     if (count_inputs("p4_first_block") == 0) {
-      next_button.style.visibility="hidden"}
-	}
+      next_button.style.visibility="hidden"
+      }
+    if (industry_other.checked){
+	  industry_other_wrapper.style.visibility="visible";
+	      if (count_inputs("industry_other_wrapper") > 0){
+	      next_button.style.visibility="visible"}
+	      else {next_button.style.visibility="hidden"}       
+    }  
+    else { 
+    industry_other_wrapper.style.visibility="hidden"}   
+    }          
+			
 	if (page_number == 5){
     if (Recurring_20.checked || Recurring_NA.checked) {
     	next_button.style.visibility="visible"
