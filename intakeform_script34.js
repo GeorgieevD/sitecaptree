@@ -31,7 +31,7 @@ Reporting_currency_wrapper.style.visibility="hidden"
 
 const industry_other = document.getElementById("industry_other")
 const industry_other_wrapper = document.getElementById("industry_other_wrapper")
-industry_other_wrapper.style.display="none" 
+industry_other_wrapper.style.visibility="hidden" 
 
 const year_wrapper = document.getElementById("year_wrapper")
 const company_size_wrapper = document.getElementById("company_size_wrapper")
