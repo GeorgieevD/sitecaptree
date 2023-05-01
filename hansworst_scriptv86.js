@@ -295,8 +295,7 @@ function createCopiesFromDict(inputDict) {
   // Define the number of copies to make
   var number_of_elements = Object.keys(inputDict).length;
 	if (number_of_elements >=2) {
-		document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan products"
-		}; 
+	 document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan products"} 
 	else {document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan product"};		
 
   // Loop through the number of copies to make
