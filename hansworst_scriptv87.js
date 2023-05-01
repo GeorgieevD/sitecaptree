@@ -54,7 +54,7 @@ function rangeConverter(quantum_range, range, decimals) {
     return minQuantum !== undefined ? minQuantum.toFixed(decimals).toString() : 'TBD';
   }
 
-  const output = range ? `${minQuantum.toFixed(decimals)}-${maxQuantum.toFixed(decimals)}` : maxQuantum.toFixed(decimals).toString();
+  const output = range ? `${minQuantum.toFixed(decimals)} - ${maxQuantum.toFixed(decimals)}` : maxQuantum.toFixed(decimals).toString();
   return output;
 }
 
@@ -336,7 +336,7 @@ function createCopiesFromDict(inputDict) {
 	  		element.style.display = "flex"} 		      
       } else if (oldId === "rate_accolade") {
         	element.style.display = 'none'
-	        if (inputDict[productName].lowest_rate){
+	        if (findLowestRateRow(inputDict) === productName){
 	      		element.style.display = "flex"} 		      
       } else if (oldId === "ranking_accolade") {
         	element.style.display = 'none'
@@ -403,7 +403,7 @@ function createCopiesFromDict(inputDict) {
   }	  
 }
 
-function findLowestRateRow(inputDict, order_setting) {
+function findLowestRateRow(inputDict) {
   var lowestRateKey = null;
 
   for (var key in inputDict) {
