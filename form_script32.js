@@ -42,8 +42,6 @@ function ReportingCurrencyMasks(currency) {
    document.getElementById("equity_sub").innerHTML = "Please enter in " + currency + " million";
    document.getElementById("cash_sub").innerHTML = "Cash in " + currency + " million";
    document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + " million";
-   document.getElementById("SME_sub").innerHTML = "SME (<" + currency + "25mn rev.)";
-   document.getElementById("enterprise_sub").innerHTML = "Enterprise (>" + currency + "25mn rev.)";
    document.getElementById("asset_sub").innerHTML = "Please enter in " + currency + " million";	
    document.getElementById("asset_title").innerHTML = currency + " 1 million?";		
 }
