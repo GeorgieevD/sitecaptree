@@ -300,7 +300,7 @@ function createCopiesFromDict(inputDict) {
 	else {document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan product"};		
 
   // Loop through the number of copies to make
-  for (var i = 0; i = number_of_elements -1; i--) { // subtract 1 for the original element
+  for (var i = number_of_elements - 1; i >= 0; i--) { // subtract 1 for the original element
 
     // Clone the original element and its children
     var copiedElement = templateElement.cloneNode(true);
