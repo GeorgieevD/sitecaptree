@@ -284,6 +284,7 @@ function createCopiesFromDict(inputDict) {
 	
   // Get the template element to copy
   var templateElement = document.getElementById("product_template");		
+  var parentContainer = templateElement.parentNode;
 	
   // Remove all existing copies of the product_box element
   var copiedElements = document.querySelectorAll(".product-box-copy");
@@ -299,7 +300,7 @@ function createCopiesFromDict(inputDict) {
 	else {document.getElementById("text_products").innerHTML = String(number_of_elements)+" loan product"};		
 
   // Loop through the number of copies to make
-  for (var i = 0; i < number_of_elements; i++) { // subtract 1 for the original element
+  for (var i = 0; i = number_of_elements -1; i--) { // subtract 1 for the original element
 
     // Clone the original element and its children
     var copiedElement = templateElement.cloneNode(true);
@@ -333,16 +334,13 @@ function createCopiesFromDict(inputDict) {
       } else if (oldId === "quantum_accolade") {
         	element.style.display = 'none'
 		if (inputDict[productName].quantum_met){
-	  		element.style.display = "flex"
-		        element.style.zIndex = "-1"} 		      
+	  		element.style.display = "flex"} 		      
       } else if (oldId === "rate_accolade") {
         	element.style.display = 'none'
-	        element.style.zIndex = "-1" 
 	        if (findLowestRateRow(inputDict) === productName){
 	      		element.style.display = "flex"} 		      
       } else if (oldId === "ranking_accolade") {
         	element.style.display = 'none'
-	        element.style.zIndex = "-1"
 	        if (inputDict[productName].ranking == 'junior'){
 	      		element.style.display = "flex"}
       } else if (oldId === "product_quantum") {
@@ -402,7 +400,7 @@ function createCopiesFromDict(inputDict) {
     });
 
     // Insert the copied element directly after the template element
-    templateElement.insertAdjacentElement('beforebegin', copiedElement);
+    parentContainer.insertBefore(copiedElement, parentContainer.firstChild);
   }	  
 }
 
