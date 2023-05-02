@@ -43,7 +43,8 @@ function ReportingCurrencyMasks(currency) {
    document.getElementById("cash_sub").innerHTML = "Cash in " + currency + " million";
    document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + " million";
    document.getElementById("asset_sub").innerHTML = "Please enter in " + currency + " million";	
-   document.getElementById("asset_title").innerHTML = currency + " 1 million?";		
+   document.getElementById("asset_title").innerHTML = currency + " 1 million?";
+   generateTooltips(currency)
 }
 
 const prev_button = document.getElementById("previous_button")
