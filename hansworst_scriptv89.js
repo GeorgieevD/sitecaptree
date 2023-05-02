@@ -334,15 +334,15 @@ function createCopiesFromDict(inputDict) {
         	element.style.display = 'none'
 		if (inputDict[productName].quantum_met){
 	  		element.style.display = "flex"
-		        element.style.zIndex = "0"} 		      
+		        element.style.zIndex = "-1"} 		      
       } else if (oldId === "rate_accolade") {
         	element.style.display = 'none'
-	        element.style.zIndex = "0" 
+	        element.style.zIndex = "-1" 
 	        if (findLowestRateRow(inputDict) === productName){
 	      		element.style.display = "flex"} 		      
       } else if (oldId === "ranking_accolade") {
         	element.style.display = 'none'
-	        element.style.zIndex = "0"
+	        element.style.zIndex = "-1"
 	        if (inputDict[productName].ranking == 'junior'){
 	      		element.style.display = "flex"}
       } else if (oldId === "product_quantum") {
