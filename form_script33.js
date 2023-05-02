@@ -36,9 +36,9 @@ function ReportingCurrencyMasks(currency) {
    $("#equity_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
    $("#cash_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
    $("#gross_debt_field").inputmask({alias: "currency", digits: 5, digitsOptional: true, suffix: " mn", rightAlign: false, placeholder: '', prefix: currency, allowMinus: false, "clearMaskOnLostFocus": true});
-   document.getElementById("revenue_sub").innerHTML = "LTM in " + currency + " million, estimate is ok";
-   document.getElementById("EBITDA_sub").innerHTML = "LTM in " + currency + " million, estimate is ok";
-   document.getElementById("FCF_sub").innerHTML = "LTM in " + currency + " million, estimate is ok";
+   document.getElementById("revenue_sub").innerHTML = "Last 12 months in " + currency + " million, estimate is ok";
+   document.getElementById("EBITDA_sub").innerHTML = "Last 12 months in " + currency + " million, estimate is ok";
+   document.getElementById("FCF_sub").innerHTML = "Last 12 months in " + currency + " million, estimate is ok";
    document.getElementById("equity_sub").innerHTML = "Please enter in " + currency + " million";
    document.getElementById("cash_sub").innerHTML = "Cash in " + currency + " million";
    document.getElementById("debt_sub").innerHTML = "Gross long term debt in " + currency + " million";
