@@ -187,7 +187,7 @@ function filterLendingProducts(company, productData) {
     "Revenue Based Financing": (company_type === "start_up" || company_type === "scale_up") && LTM_revenue >= 0.1,
     "Mezzanine": ticket_size >= 1. && LTM_EBITDA >= 0.25,
     "Bank Loan": ticket_size >= 1. && LTM_EBITDA >= 0.33,
-    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenued >= 10,
+    "Growth Bank Loan": (company_type === "start_up" || company_type === "scale_up") && growth >= 0.3 && LTM_revenue >= 10,
     "Asset Backed Loan": asset_size >= 1.,
     "Specialty Financing": true
   };
