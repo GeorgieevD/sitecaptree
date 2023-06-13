@@ -1,5 +1,5 @@
 
-var quantum_decimals = 0
+var quantum_decimals = 1
 var range_setting = false
 
 // Currency conversion
